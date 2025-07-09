@@ -32,19 +32,19 @@ const Navbar = () => {
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-8">
-                <Link href={`/${locale}`} className="nav-link text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#home`} className="nav-link text-beige hover:text-orange transition-colors">
                   {t('home')}
                 </Link>
-                <Link href={`/${locale}/offers`} className="nav-link text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#offers`} className="nav-link text-beige hover:text-orange transition-colors">
                   {t('offers')}
                 </Link>
-                <Link href={`/${locale}/map`} className="nav-link text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#map`} className="nav-link text-beige hover:text-orange transition-colors">
                   {t('map')}
                 </Link>
-                <Link href={`/${locale}/about`} className="nav-link text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#about`} className="nav-link text-beige hover:text-orange transition-colors">
                   {t('about')}
                 </Link>
-                <Link href={`/${locale}/contact`} className="nav-link text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#contact`} className="nav-link text-beige hover:text-orange transition-colors">
                   {t('contact')}
                 </Link>
                 <LanguageSwitcher />
@@ -67,19 +67,19 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <div className={`md:hidden pb-4 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
               <div className="flex flex-col space-y-4">
-                <Link href={`/${locale}`} className="text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#home`} className="text-beige hover:text-orange transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('home')}
                 </Link>
-                <Link href={`/${locale}/offers`} className="text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#offers`} className="text-beige hover:text-orange transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('offers')}
                 </Link>
-                <Link href={`/${locale}/map`} className="text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#map`} className="text-beige hover:text-orange transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('map')}
                 </Link>
-                <Link href={`/${locale}/about`} className="text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#about`} className="text-beige hover:text-orange transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('about')}
                 </Link>
-                <Link href={`/${locale}/contact`} className="text-beige hover:text-orange transition-colors">
+                <Link href={`/${locale}#contact`} className="text-beige hover:text-orange transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                   {t('contact')}
                 </Link>
               </div>

@@ -27,16 +27,100 @@
     "name": "ODYSSEE",
     "tagline": "TRAVEL SERVICE",
     "description": "Creating unforgettable journeys and extraordinary experiences for travelers worldwide."
-  },
-  "home": {
+  },  "home": {
     "getStarted": "Get Started",
     "learnMore": "Learn More",
     "flightBooking": "Flight Booking",
     "flightBookingDesc": "Find the best deals on flights worldwide",
-    "hotelReservations": "Hotel Reservations", 
+    "hotelReservations": "Hotel Reservations",
     "hotelReservationsDesc": "Book comfortable accommodations anywhere",
     "tourPackages": "Tour Packages",
-    "tourPackagesDesc": "Discover amazing destinations with our guided tours"
+    "tourPackagesDesc": "Discover amazing destinations with our guided tours",
+    "heroTitle": "Your Journey",
+    "heroTitleSpan": "Begins Here",
+    "heroDescription": "Discover extraordinary destinations with Odyssee Travel Services. We craft unforgettable experiences tailored just for you.",
+    "exploreDestinations": "Explore Destinations",
+    "planYourTrip": "Plan Your Trip"
+  },
+  "offers": {
+    "title": "Special Offers",
+    "subtitle": "Discover amazing deals and exclusive packages for your next adventure",
+    "europeanExplorer": {
+      "title": "European Explorer",
+      "description": "Discover the charm of Europe with our curated 14-day journey through iconic cities and hidden gems.",
+      "price": "$2,999"
+    },
+    "tropicalParadise": {
+      "title": "Tropical Paradise",
+      "description": "Escape to pristine beaches and crystal-clear waters with our luxury tropical getaway package.",
+      "price": "$1,899"
+    },
+    "culturalImmersion": {
+      "title": "Cultural Immersion",
+      "description": "Dive deep into local cultures and traditions with our authentic cultural experience tours.",
+      "price": "$2,499"
+    },
+    "bookNow": "Book Now"
+  },
+  "map": {
+    "title": "Explore Our Destinations",
+    "subtitle": "From bustling cities to serene landscapes, we cover destinations worldwide",
+    "comingSoon": "Interactive Map Coming Soon",
+    "description": "Explore our destinations with our interactive world map"
+  },
+  "about": {
+    "title": "About Odyssee Travel Services",
+    "description1": "With over 15 years of experience in the travel industry, Odyssee Travel Services has been crafting extraordinary journeys for adventurous souls. We believe that every trip should be more than just a vacation—it should be a transformative experience.",
+    "description2": "Our team of passionate travel experts work tirelessly to curate unique experiences that connect you with the world's most incredible destinations, cultures, and people.",
+    "stats": {
+      "destinations": "Destinations",
+      "travelers": "Happy Travelers",
+      "experience": "Years Experience"
+    },
+    "features": {
+      "personalizedService": {
+        "title": "Personalized Service",
+        "description": "Tailored experiences just for you"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "We're here whenever you need us"
+      },
+      "bestValue": {
+        "title": "Best Value",
+        "description": "Competitive prices, exceptional quality"
+      }
+    },
+    "learnMore": "Learn More"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to start your next adventure? Let's plan something extraordinary together",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your dream destination...",
+      "sendMessage": "Send Message"
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": {
+        "title": "Address",
+        "value": "123 Travel Street, Adventure City, AC 12345"
+      },
+      "phone": {
+        "title": "Phone",
+        "value": "+1 (555) 123-4567"
+      },
+      "email": {
+        "title": "Email",
+        "value": "info@odysseetravelservices.com"
+      },
+      "followUs": "Follow Us"
+    }
   },
   "language": {
     "english": "English",

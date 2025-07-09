@@ -12,7 +12,12 @@ interface ClientLayoutProps {
 
 export default function ClientLayout({ children, messages, locale }: ClientLayoutProps) {
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
+    <NextIntlClientProvider 
+      messages={messages} 
+      locale={locale}
+      timeZone="UTC"
+      now={new Date()}
+    >
       <Navbar />
       {children}
       <Footer />

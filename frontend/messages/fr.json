@@ -36,7 +36,92 @@
     "hotelReservations": "Réservations d'hôtels",
     "hotelReservationsDesc": "Réservez des hébergements confortables partout",
     "tourPackages": "Forfaits touristiques",
-    "tourPackagesDesc": "Découvrez des destinations incroyables avec nos visites guidées"
+    "tourPackagesDesc": "Découvrez des destinations incroyables avec nos visites guidées",
+    "heroTitle": "Votre Voyage",
+    "heroTitleSpan": "Commence Ici",
+    "heroDescription": "Découvrez des destinations extraordinaires avec Odyssee Travel Services. Nous créons des expériences inoubliables conçues spécialement pour vous.",
+    "exploreDestinations": "Explorer les Destinations",
+    "planYourTrip": "Planifiez Votre Voyage"
+  },
+  "offers": {
+    "title": "Offres Spéciales",
+    "subtitle": "Découvrez des offres incroyables et des forfaits exclusifs pour votre prochaine aventure",
+    "europeanExplorer": {
+      "title": "Explorateur Européen",
+      "description": "Découvrez le charme de l'Europe avec notre voyage de 14 jours à travers des villes emblématiques et des joyaux cachés.",
+      "price": "2 999 €"
+    },
+    "tropicalParadise": {
+      "title": "Paradis Tropical",
+      "description": "Évadez-vous vers des plages vierges et des eaux cristallines avec notre forfait de luxe tropical.",
+      "price": "1 899 €"
+    },
+    "culturalImmersion": {
+      "title": "Immersion Culturelle",
+      "description": "Plongez profondément dans les cultures et traditions locales avec nos circuits d'expérience culturelle authentique.",
+      "price": "2 499 €"
+    },
+    "bookNow": "Réserver Maintenant"
+  },
+  "map": {
+    "title": "Explorez Nos Destinations",
+    "subtitle": "Des villes animées aux paysages sereins, nous couvrons des destinations dans le monde entier",
+    "comingSoon": "Carte Interactive Bientôt Disponible",
+    "description": "Explorez nos destinations avec notre carte interactive du monde"
+  },
+  "about": {
+    "title": "À Propos d'Odyssee Travel Services",
+    "description1": "Avec plus de 15 ans d'expérience dans l'industrie du voyage, Odyssee Travel Services crée des voyages extraordinaires pour les âmes aventureuses. Nous croyons que chaque voyage devrait être plus qu'une simple vacation—il devrait être une expérience transformatrice.",
+    "description2": "Notre équipe d'experts passionnés du voyage travaille sans relâche pour organiser des expériences uniques qui vous connectent avec les destinations, cultures et peuples les plus incroyables du monde.",
+    "stats": {
+      "destinations": "Destinations",
+      "travelers": "Voyageurs Satisfaits",
+      "experience": "Années d'Expérience"
+    },
+    "features": {
+      "personalizedService": {
+        "title": "Service Personnalisé",
+        "description": "Des expériences sur mesure rien que pour vous"
+      },
+      "support": {
+        "title": "Support 24/7",
+        "description": "Nous sommes là quand vous en avez besoin"
+      },
+      "bestValue": {
+        "title": "Meilleur Rapport Qualité-Prix",
+        "description": "Prix compétitifs, qualité exceptionnelle"
+      }
+    },
+    "learnMore": "En Savoir Plus"
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Prêt à commencer votre prochaine aventure ? Planifions quelque chose d'extraordinaire ensemble",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "message": "Message",
+      "messagePlaceholder": "Parlez-nous de votre destination de rêve...",
+      "sendMessage": "Envoyer le Message"
+    },
+    "info": {
+      "title": "Informations de Contact",
+      "address": {
+        "title": "Adresse",
+        "value": "123 Rue du Voyage, Ville Aventure, VA 12345"
+      },
+      "phone": {
+        "title": "Téléphone",
+        "value": "+1 (555) 123-4567"
+      },
+      "email": {
+        "title": "Email",
+        "value": "info@odysseetravelservices.com"
+      },
+      "followUs": "Suivez-Nous"
+    }
   },
   "language": {
     "english": "English",

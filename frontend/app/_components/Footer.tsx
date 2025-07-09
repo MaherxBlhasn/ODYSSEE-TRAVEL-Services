@@ -32,20 +32,20 @@ const Footer = () => {
                 <div>
                     <h4 className="text-lg font-semibold text-beige mb-4">{t('quickLinks')}</h4>
                     <ul className="space-y-2">
-                        <li><Link href={`/${locale}`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('home')}</Link></li>
-                        <li><Link href={`/${locale}/offers`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('offers')}</Link></li>
-                        <li><Link href={`/${locale}/about`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('about')}</Link></li>
-                        <li><Link href={`/${locale}/contact`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('contact')}</Link></li>
+                        <li><Link href={`/${locale}#home`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('home')}</Link></li>
+                        <li><Link href={`/${locale}#offers`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('offers')}</Link></li>
+                        <li><Link href={`/${locale}#about`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('about')}</Link></li>
+                        <li><Link href={`/${locale}#contact`} className="text-beige/80 hover:text-orange transition-colors">{tNavbar('contact')}</Link></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 className="text-lg font-semibold text-beige mb-4">{t('services')}</h4>
                     <ul className="space-y-2">
-                        <li><Link href={`/${locale}/flights`} className="text-beige/80 hover:text-orange transition-colors">{t('flightBooking')}</Link></li>
-                        <li><Link href={`/${locale}/hotels`} className="text-beige/80 hover:text-orange transition-colors">{t('hotelReservations')}</Link></li>
-                        <li><Link href={`/${locale}/packages`} className="text-beige/80 hover:text-orange transition-colors">{t('tourPackages')}</Link></li>
-                        <li><Link href={`/${locale}/insurance`} className="text-beige/80 hover:text-orange transition-colors">{t('travelInsurance')}</Link></li>
+                        <li><Link href={`/${locale}#offers`} className="text-beige/80 hover:text-orange transition-colors">{t('flightBooking')}</Link></li>
+                        <li><Link href={`/${locale}#offers`} className="text-beige/80 hover:text-orange transition-colors">{t('hotelReservations')}</Link></li>
+                        <li><Link href={`/${locale}#offers`} className="text-beige/80 hover:text-orange transition-colors">{t('tourPackages')}</Link></li>
+                        <li><Link href={`/${locale}#contact`} className="text-beige/80 hover:text-orange transition-colors">{t('travelInsurance')}</Link></li>
                     </ul>
                 </div>
                 

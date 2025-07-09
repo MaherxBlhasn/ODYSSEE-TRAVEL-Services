@@ -1,0 +1,45 @@
+{
+  "navbar": {
+    "home": "Home",
+    "offers": "Offers",
+    "map": "Map",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "home": "Home",
+    "offers": "Offers",
+    "about": "About",
+    "contact": "Contact",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "newsletter": "Newsletter",
+    "newsletterText": "Subscribe for travel tips and exclusive offers",
+    "subscribe": "Subscribe",
+    "emailPlaceholder": "Your email",
+    "copyright": "© 2025 Odyssee Travel Services. All rights reserved.",
+    "flightBooking": "Flight Booking",
+    "hotelReservations": "Hotel Reservations",
+    "tourPackages": "Tour Packages",
+    "travelInsurance": "Travel Insurance"
+  },
+  "company": {
+    "name": "ODYSSEE",
+    "tagline": "TRAVEL SERVICE",
+    "description": "Creating unforgettable journeys and extraordinary experiences for travelers worldwide."
+  },
+  "home": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "flightBooking": "Flight Booking",
+    "flightBookingDesc": "Find the best deals on flights worldwide",
+    "hotelReservations": "Hotel Reservations", 
+    "hotelReservationsDesc": "Book comfortable accommodations anywhere",
+    "tourPackages": "Tour Packages",
+    "tourPackagesDesc": "Discover amazing destinations with our guided tours"
+  },
+  "language": {
+    "english": "English",
+    "french": "Français"
+  }
+}

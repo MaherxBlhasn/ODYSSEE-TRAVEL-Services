@@ -27,6 +27,15 @@
     "name": "ODYSSEE",
     "tagline": "TRAVEL SERVICE",
     "description": "Creating unforgettable journeys and extraordinary experiences for travelers worldwide."
+  },
+  "newsletter": {
+    "title": "Newsletter Subscription",
+    "placeholder": "Your email",
+    "subscribe": "Subscribe",
+    "sending": "Sending...",
+    "subscribed": "Subscribed!",
+    "error": "Try again",
+    "emailLabel": "Email address for newsletter"
   },  "home": {
     "getStarted": "Get Started",
     "learnMore": "Learn More",
@@ -103,7 +112,10 @@
       "phone": "Phone",
       "message": "Message",
       "messagePlaceholder": "Tell us about your dream destination...",
-      "sendMessage": "Send Message"
+      "sendMessage": "Send Message",
+      "sending": "Sending...",
+      "sent": "Message Sent!",
+      "error": "Error - Try Again"
     },
     "info": {
       "title": "Contact Information",

@@ -3,6 +3,8 @@
 import {NextIntlClientProvider} from 'next-intl';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import SmoothScroll from './SmoothScroll';
+import ScrollAnimations from './ScrollAnimations';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -21,6 +23,10 @@ export default function ClientLayout({ children, messages, locale }: ClientLayou
       <Navbar />
       {children}
       <Footer />
+      
+      {/* Global interactive components */}
+      <SmoothScroll />
+      <ScrollAnimations />
     </NextIntlClientProvider>
   );
 }

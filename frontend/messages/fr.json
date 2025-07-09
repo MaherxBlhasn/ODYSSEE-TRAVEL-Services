@@ -28,6 +28,15 @@
     "tagline": "SERVICE DE VOYAGE",
     "description": "Créer des voyages inoubliables et des expériences extraordinaires pour les voyageurs du monde entier."
   },
+  "newsletter": {
+    "title": "Abonnement Newsletter",
+    "placeholder": "Votre email",
+    "subscribe": "S'abonner",
+    "sending": "Envoi...",
+    "subscribed": "Abonné!",
+    "error": "Réessayer",
+    "emailLabel": "Adresse email pour la newsletter"
+  },
   "home": {
     "getStarted": "Commencer",
     "learnMore": "En savoir plus",

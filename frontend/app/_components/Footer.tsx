@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
+import NewsletterForm from './NewsletterForm';
 
 const Footer = () => {
   const t = useTranslations('footer');
@@ -52,12 +53,7 @@ const Footer = () => {
                 <div>
                     <h4 className="text-lg font-semibold text-beige mb-4">{t('newsletter')}</h4>
                     <p className="text-beige/80 mb-4">{t('newsletterText')}</p>
-                    <div className="flex">
-                        <input type="email" className="flex-1 px-4 py-2 rounded-l-full bg-beige/10 border border-orange/20 text-beige focus:border-orange focus:outline-none" placeholder={t('emailPlaceholder')} />
-                        <button className="bg-orange px-6 py-2 rounded-r-full text-white font-semibold hover:bg-orange/80 transition-colors">
-                            {t('subscribe')}
-                        </button>
-                    </div>
+                    <NewsletterForm />
                 </div>
             </div>
             

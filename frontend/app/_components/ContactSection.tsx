@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import ContactForm from './ContactForm';
 
 export default async function ContactSection() {
   const tContact = await getTranslations('contact');
@@ -13,36 +14,7 @@ export default async function ContactSection() {
 
         <div className="grid lg:grid-cols-2 gap-16">
           <div className="fade-in">
-            <form className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <label className="block text-beige mb-3">{tContact('form.firstName')}</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy" placeholder="John" />
-                </div>
-                <div>
-                  <label className="block text-beige mb-3">{tContact('form.lastName')}</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy" placeholder="Doe" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-beige mb-3">{tContact('form.email')}</label>
-                <input type="email" className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy" placeholder="john@example.com" />
-              </div>
-
-              <div>
-                <label className="block text-beige mb-3">{tContact('form.phone')}</label>
-                <input type="tel" className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy" placeholder="+1 (555) 000-0000" />
-              </div>
-
-              <div>
-                <label className="block text-beige mb-3">{tContact('form.message')}</label>
-                <textarea rows={5} className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy resize-none" placeholder={tContact('form.messagePlaceholder')}></textarea>
-              </div>
-
-              <button type="submit" className="w-full btn-primary py-4 rounded-2xl text-white font-semibold text-lg">
-                {tContact('form.sendMessage')}
-              </button>
-            </form>
+            <ContactForm />
           </div>
 
           <div className="fade-in">

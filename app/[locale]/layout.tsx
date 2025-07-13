@@ -39,7 +39,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} style={{ margin: 0, padding: 0, width: '100%', height: '100%' }}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,7 +48,11 @@ export default async function LocaleLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-navy text-beige overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-beige overflow-x-hidden`}
+        style={{ 
+          margin: 0, 
+          padding: 0
+        }}
       >
         <ClientLayout messages={messages} locale={locale}>
           {children}

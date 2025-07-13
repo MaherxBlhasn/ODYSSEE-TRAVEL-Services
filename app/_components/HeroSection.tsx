@@ -9,12 +9,16 @@ const HeroSection = async ({ params }: { params: Promise<{ locale: string }> }) 
     return (
         <div 
             id="home" 
-            className="min-h-screen h-screen flex items-center relative overflow-hidden"
+            className="flex items-center relative overflow-hidden"
             style={{
-                background: `linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.4)), url('/bg.jpg')`,
+                background: `linear-gradient(rgba(1, 29, 59, 0.85), rgba(1, 29, 59, 0.65)), url('/bg.jpg')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
+                backgroundRepeat: 'no-repeat',
+                height: '100vh',
+                width: '100%',
+                margin: 0,
+                padding: 0
             }}
         >
             <div className="container mx-auto px-6 relative z-10">

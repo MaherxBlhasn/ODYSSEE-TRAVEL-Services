@@ -5,7 +5,7 @@ export default async function ContactSection() {
   const tContact = await getTranslations('contact');
 
   return (
-    <section id="contact" className="section-padding bg-beige/5">
+    <section id="contact" className="section-padding bg-navy">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 fade-in">
           <h2 className="text-4xl md:text-5xl font-bold text-beige mb-6">{tContact('title')}</h2>

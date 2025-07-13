@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -21,8 +22,16 @@ const Navbar = () => {
             <div className="flex items-center justify-between h-20">
               {/* Logo */}
               <Link href={`/${locale}`} className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-beige rounded-full flex items-center justify-center">
-                  <span className="text-2xl font-bold text-navy">O</span>
+                <div className="w-12 h-12 rounded-full overflow-hidden shadow-lg">
+                  <Image
+                    src="/LOGO.png"
+                    alt="Odyssee Travel Services Logo"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                    priority
+                    unoptimized
+                  />
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-beige">{tCompany('name')}</h1>

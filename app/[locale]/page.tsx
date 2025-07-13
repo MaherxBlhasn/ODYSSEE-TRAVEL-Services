@@ -11,7 +11,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
 
   return (
-    <div className="min-h-screen bg-navy">
+    <div style={{ width: '100%', margin: 0, padding: 0, minHeight: '100vh' }}>
       {/* Hero Section */}
       <HeroSection params={params} />
       

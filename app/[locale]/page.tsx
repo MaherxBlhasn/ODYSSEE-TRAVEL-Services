@@ -16,7 +16,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <HeroSection params={params} />
       
       {/* Features Section */}
-      <FeaturesSection />
+      {/* <FeaturesSection /> */}
       
       {/* Offers Section */}
       <OffersSection params={params} />

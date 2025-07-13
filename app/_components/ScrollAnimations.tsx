@@ -19,15 +19,16 @@ export default function ScrollAnimations() {
       });
     };
 
-    // Parallax effect for hero section (matching original JS)
+    // Parallax effect for hero section (disabled to fix spacing issues)
     const handleParallax = () => {
-      const scrolled = window.pageYOffset;
-      const heroSection = document.getElementById('home') as HTMLElement;
+      // Parallax effect disabled - was causing spacing issues
+      // const scrolled = window.pageYOffset;
+      // const heroSection = document.getElementById('home') as HTMLElement;
       
-      if (heroSection) {
-        const rate = scrolled * -0.5; // Same rate as original JS
-        heroSection.style.transform = `translateY(${rate}px)`;
-      }
+      // if (heroSection) {
+      //   const rate = scrolled * -0.5;
+      //   heroSection.style.transform = `translateY(${rate}px)`;
+      // }
     };
 
     // Combined scroll handler for better performance

@@ -76,7 +76,10 @@ html {
 }
 
 .hero-bg {
-  background: linear-gradient(135deg, #1a365d 0%, #2a4365 50%, #3182ce 100%);
+  background-image: url('/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
 }
 

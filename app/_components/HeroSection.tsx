@@ -7,8 +7,16 @@ const HeroSection = async ({ params }: { params: Promise<{ locale: string }> }) 
     const tHome = await getTranslations('home');
 
     return (
-        <section id="home" className="hero-bg min-h-screen flex items-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-navy/80 to-transparent"></div>
+        <div 
+            id="home" 
+            className="min-h-screen h-screen flex items-center relative overflow-hidden"
+            style={{
+                background: `linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.4)), url('/bg.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-4xl">
                     <h1 className="text-5xl md:text-7xl font-bold text-beige mb-6 fade-in">
@@ -30,10 +38,10 @@ const HeroSection = async ({ params }: { params: Promise<{ locale: string }> }) 
             </div>
 
             {/* Floating Elements */}
-            <div className="absolute top-20 right-20 w-20 h-20 bg-orange/20 rounded-full animate-float"></div>
+            {/* <div className="absolute top-20 right-20 w-20 h-20 bg-orange/20 rounded-full animate-float"></div>
             <div className="absolute bottom-40 right-40 w-12 h-12 bg-beige/20 rounded-full animate-float-delay"></div>
-            <div className="absolute top-1/2 right-10 w-6 h-6 bg-orange/40 rounded-full animate-float-delay-2"></div>
-        </section>
+            <div className="absolute top-1/2 right-10 w-6 h-6 bg-orange/40 rounded-full animate-float-delay-2"></div> */}
+        </div>
     )
 }
 

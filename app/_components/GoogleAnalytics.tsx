@@ -4,9 +4,24 @@ import Script from 'next/script';
 import { GA_TRACKING_ID, GA_ENABLED, GA_CONFIG } from '../lib/analytics';
 
 export default function GoogleAnalytics() {
-  // Only render in production
+  // Debug logging only in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔍 GoogleAnalytics component render check:');
+    console.log('- GA_ENABLED:', GA_ENABLED);
+    console.log('- GA_TRACKING_ID:', GA_TRACKING_ID);
+    console.log('- NODE_ENV:', process.env.NODE_ENV);
+  }
+
+  // Only render when enabled
   if (!GA_ENABLED) {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('❌ GA not enabled, component returning null');
+    }
     return null;
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('✅ GA enabled, rendering scripts');
   }
 
   return (
@@ -14,13 +29,25 @@ export default function GoogleAnalytics() {
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
         strategy="afterInteractive"
+        onLoad={() => {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('✅ GA script loaded successfully');
+          }
+        }}
+        onError={(e) => {
+          if (process.env.NODE_ENV === 'development') {
+            console.error('❌ GA script failed to load:', e);
+          }
+        }}
       />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
+          ${process.env.NODE_ENV === 'development' ? "console.log('🔧 Initializing gtag...');" : ''}
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${GA_TRACKING_ID}', ${JSON.stringify(GA_CONFIG)});
+          ${process.env.NODE_ENV === 'development' ? "console.log('✅ gtag initialized');" : ''}
         `}
       </Script>
     </>

@@ -11,5 +11,5 @@ export default createMiddleware({
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ['/', '/((?!api|_next/static|_next/image|favicon.ico|bg.jpg|LOGO.png).*)']
+  matcher: ['/', '/((?!api|_next/static|_next/image|favicon.ico|bg.jpg|bg-2.jpg|LOGO.png).*)']
 };

@@ -10,9 +10,9 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
       backgroundImage: 'url(/bg-2.jpg)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      // backgroundAttachment: 'fixed'
+      backgroundAttachment: 'fixed'
     }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-navy/95 via-navy/80 via-blue-900/75 to-slate-900/90"></div>
+      <div className="absolute inset-0" style={{background: 'linear-gradient(rgba(1, 29, 59, 0.85), rgba(1, 29, 59, 0.65))'}}></div>
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-beige" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>{tOffers('title')}</h2>

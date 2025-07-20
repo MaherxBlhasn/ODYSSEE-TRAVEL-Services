@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { trackEvent } from './GoogleAnalytics';
 
 interface FormData {
   firstName: string;
@@ -39,6 +40,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Track form submission start
+    trackEvent('form_submit_start', 'contact', 'contact_form');
+
     try {
       // Simulate API call or call custom onSubmit handler
       if (onSubmit) {
@@ -49,6 +53,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       }
 
       setSubmitStatus('success');
+      
+      // Track successful form submission
+      trackEvent('form_submit_success', 'contact', 'contact_form');
       
       // Reset form after successful submission
       setTimeout(() => {
@@ -64,6 +71,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       
     } catch (error) {
       setSubmitStatus('error');
+      
+      // Track form submission error
+      trackEvent('form_submit_error', 'contact', 'contact_form');
       console.error('Form submission error:', error);
     } finally {
       setIsSubmitting(false);

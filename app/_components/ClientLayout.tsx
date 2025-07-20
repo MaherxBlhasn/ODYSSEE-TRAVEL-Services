@@ -5,6 +5,8 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import SmoothScroll from './SmoothScroll';
 import ScrollAnimations from './ScrollAnimations';
+import useGoogleAnalytics from '../_hooks/useGoogleAnalytics';
+import AnalyticsDebug from './AnalyticsDebug';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -13,6 +15,9 @@ interface ClientLayoutProps {
 }
 
 export default function ClientLayout({ children, messages, locale }: ClientLayoutProps) {
+  // Track page views for Google Analytics
+  useGoogleAnalytics();
+
   return (
     <NextIntlClientProvider 
       messages={messages} 
@@ -27,6 +32,9 @@ export default function ClientLayout({ children, messages, locale }: ClientLayou
       {/* Global interactive components */}
       <SmoothScroll />
       <ScrollAnimations />
+      
+      {/* Analytics Debug Panel (development only) */}
+      <AnalyticsDebug />
     </NextIntlClientProvider>
   );
 }

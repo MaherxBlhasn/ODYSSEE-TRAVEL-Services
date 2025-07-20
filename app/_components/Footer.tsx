@@ -13,7 +13,9 @@ const Footer = () => {
   const locale = useLocale();
 
   return (
-    <footer className="py-6 sm:py-8 border-t border-orange/30" style={{background: 'linear-gradient(135deg, #011d3b 0%, #1a365d 50%, #2a4365 100%)'}}>
+    <footer className="py-6 sm:py-8 border-t border-orange/30" style={{
+      background: 'linear-gradient(135deg, #001F3F 0%, #003366 100%)'
+    }}>
         <div className="flex justify-center px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="w-full max-w-6xl">
                 <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -31,38 +33,44 @@ const Footer = () => {
                             />
                         </div>
                         <div className="flex-1">
-                            <h3 className="text-lg sm:text-xl font-bold text-beige leading-tight">{tCompany('name')}</h3>
-                            <p className="text-xs sm:text-sm text-orange mt-1">{tCompany('tagline')}</p>
+                            <h3 className="text-lg sm:text-xl font-bold leading-tight" style={{ color: '#FCE6CE' }}>{tCompany('name')}</h3>
+                            <p className="text-xs sm:text-sm mt-1" style={{ color: '#F28C28' }}>{tCompany('tagline')}</p>
                         </div>
                     </Link>
-                    <p className="text-beige/90 leading-relaxed text-sm max-w-xs sm:max-w-sm mx-auto lg:mx-0">
+                    <p className="leading-relaxed text-sm max-w-xs sm:max-w-sm mx-auto lg:mx-0" style={{ 
+                      color: '#FCE6CE', 
+                      opacity: 0.9 
+                    }}>
                         {tCompany('description')}
                     </p>
                 </div>
                 
                 <div className="col-span-1 text-center lg:text-left mb-8 lg:mb-0">
-                    <h4 className="text-base sm:text-lg font-semibold text-beige mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block">{t('quickLinks')}</h4>
+                    <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block" style={{ color: '#FCE6CE' }}>{t('quickLinks')}</h4>
                     <ul className="space-y-2 sm:space-y-3">
-                        <li><Link href={`/${locale}#home`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>→</span><span>{tNavbar('home')}</span></Link></li>
-                        <li><Link href={`/${locale}#offers`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>→</span><span>{tNavbar('offers')}</span></Link></li>
-                        <li><Link href={`/${locale}#about`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>→</span><span>{tNavbar('about')}</span></Link></li>
-                        <li><Link href={`/${locale}#contact`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>→</span><span>{tNavbar('contact')}</span></Link></li>
+                        <li><Link href={`/${locale}#home`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>→</span><span>{tNavbar('home')}</span></Link></li>
+                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>→</span><span>{tNavbar('offers')}</span></Link></li>
+                        <li><Link href={`/${locale}#about`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>→</span><span>{tNavbar('about')}</span></Link></li>
+                        <li><Link href={`/${locale}#contact`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>→</span><span>{tNavbar('contact')}</span></Link></li>
                     </ul>
                 </div>
                 
                 <div className="col-span-1 text-center lg:text-left mb-8 lg:mb-0">
-                    <h4 className="text-base sm:text-lg font-semibold text-beige mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block">{t('services')}</h4>
+                    <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block" style={{ color: '#FCE6CE' }}>{t('services')}</h4>
                     <ul className="space-y-2 sm:space-y-3">
-                        <li><Link href={`/${locale}#offers`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>✈️</span><span>{t('flightBooking')}</span></Link></li>
-                        <li><Link href={`/${locale}#offers`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>🏨</span><span>{t('hotelReservations')}</span></Link></li>
-                        <li><Link href={`/${locale}#offers`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>🗺️</span><span>{t('tourPackages')}</span></Link></li>
-                        <li><Link href={`/${locale}#contact`} className="text-beige/90 hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm"><span>🛡️</span><span>{t('travelInsurance')}</span></Link></li>
+                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>✈️</span><span>{t('flightBooking')}</span></Link></li>
+                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🏨</span><span>{t('hotelReservations')}</span></Link></li>
+                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🗺️</span><span>{t('tourPackages')}</span></Link></li>
+                        <li><Link href={`/${locale}#contact`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🛡️</span><span>{t('travelInsurance')}</span></Link></li>
                     </ul>
                 </div>
                 
                 <div className="col-span-2 lg:col-span-1 text-center lg:text-left">
-                    <h4 className="text-base sm:text-lg font-semibold text-beige mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block">{t('newsletter')}</h4>
-                    <p className="text-beige/90 mb-4 sm:mb-6 leading-relaxed text-sm max-w-xs sm:max-w-sm mx-auto lg:mx-0">{t('newsletterText')}</p>
+                    <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block" style={{ color: '#FCE6CE' }}>{t('newsletter')}</h4>
+                    <p className="mb-4 sm:mb-6 leading-relaxed text-sm max-w-xs sm:max-w-sm mx-auto lg:mx-0" style={{ 
+                      color: '#FCE6CE', 
+                      opacity: 0.9 
+                    }}>{t('newsletterText')}</p>
                     <div className="w-full max-w-sm mx-auto lg:mx-0">
                         <NewsletterForm />
                     </div>
@@ -70,8 +78,13 @@ const Footer = () => {
             </div>
             
             <div className="border-t border-orange/30 mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 text-center">
-                <div className="bg-gradient-to-r from-navy/20 via-navy/30 to-navy/20 rounded-xl py-4 sm:py-6 px-4 sm:px-6 lg:px-8 border border-orange/20 shadow-lg backdrop-blur-sm max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto">
-                    <p className="text-beige/95 text-xs sm:text-sm font-medium tracking-wide">{t('copyright')}</p>
+                <div className="rounded-xl py-4 sm:py-6 px-4 sm:px-6 lg:px-8 border border-orange/20 shadow-lg backdrop-blur-sm max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto" style={{
+                  background: 'rgba(0, 31, 63, 0.3)'
+                }}>
+                    <p className="text-xs sm:text-sm font-medium tracking-wide" style={{ 
+                      color: '#FCE6CE', 
+                      opacity: 0.95 
+                    }}>{t('copyright')}</p>
                 </div>
             </div>
         </div>

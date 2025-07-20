@@ -63,23 +63,27 @@ html {
 }
 
 .bg-orange {
-  background-color: #f7931e;
+  background-color: #F28C28;
 }
 
 .text-navy {
-  color: #011d3b;
+  color: #001F3F;
 }
 
 .text-beige {
-  color: #f4dcc2;
+  color: #FCE6CE;
 }
 
 .text-orange {
-  color: #f7931e;
+  color: #F28C28;
 }
 
 .border-orange {
-  border-color: #f7931e;
+  border-color: #F28C28;
+}
+
+.hover\:text-orange:hover {
+  color: #F28C28 !important;
 }
 
 .hero-bg {

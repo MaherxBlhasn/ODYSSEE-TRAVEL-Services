@@ -86,32 +86,62 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     if (submitStatus === 'error') {
       return `${baseClass} bg-red-500 text-white`;
     }
-    return `${baseClass} btn-primary text-white`;
+    return `${baseClass} text-white` + ' hover:opacity-80';
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="grid md:grid-cols-2 gap-8">
         <div>
-          <label className="block text-beige mb-3">{tContact('form.firstName')}</label>
+          <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.firstName')}</label>
           <input 
             type="text" 
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy transition-all duration-300" 
+            className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+            style={{
+              backgroundColor: 'rgba(252, 230, 206, 0.1)',
+              borderColor: 'rgba(242, 140, 40, 0.3)',
+              color: '#FCE6CE'
+            }}
+            onFocus={(e) => {
+              e.target.style.backgroundColor = 'white';
+              e.target.style.color = '#001F3F';
+              e.target.style.borderColor = '#F28C28';
+            }}
+            onBlur={(e) => {
+              e.target.style.backgroundColor = 'rgba(252, 230, 206, 0.1)';
+              e.target.style.color = '#FCE6CE';
+              e.target.style.borderColor = 'rgba(242, 140, 40, 0.3)';
+            }}
             placeholder="John"
             required
           />
         </div>
         <div>
-          <label className="block text-beige mb-3">{tContact('form.lastName')}</label>
+          <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.lastName')}</label>
           <input 
             type="text" 
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy transition-all duration-300" 
+            className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+            style={{
+              backgroundColor: 'rgba(252, 230, 206, 0.1)',
+              borderColor: 'rgba(242, 140, 40, 0.3)',
+              color: '#FCE6CE'
+            }}
+            onFocus={(e) => {
+              e.target.style.backgroundColor = 'white';
+              e.target.style.color = '#001F3F';
+              e.target.style.borderColor = '#F28C28';
+            }}
+            onBlur={(e) => {
+              e.target.style.backgroundColor = 'rgba(252, 230, 206, 0.1)';
+              e.target.style.color = '#FCE6CE';
+              e.target.style.borderColor = 'rgba(242, 140, 40, 0.3)';
+            }}
             placeholder="Doe"
             required
           />
@@ -119,38 +149,83 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       </div>
       
       <div>
-        <label className="block text-beige mb-3">{tContact('form.email')}</label>
+        <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.email')}</label>
         <input 
           type="email" 
           name="email"
           value={formData.email}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy transition-all duration-300" 
+          className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+          style={{
+            backgroundColor: 'rgba(252, 230, 206, 0.1)',
+            borderColor: 'rgba(242, 140, 40, 0.3)',
+            color: '#FCE6CE'
+          }}
+          onFocus={(e) => {
+            e.target.style.backgroundColor = 'white';
+            e.target.style.color = '#001F3F';
+            e.target.style.borderColor = '#F28C28';
+          }}
+          onBlur={(e) => {
+            e.target.style.backgroundColor = 'rgba(252, 230, 206, 0.1)';
+            e.target.style.color = '#FCE6CE';
+            e.target.style.borderColor = 'rgba(242, 140, 40, 0.3)';
+          }}
           placeholder="john@example.com"
           required
         />
       </div>
 
       <div>
-        <label className="block text-beige mb-3">{tContact('form.phone')}</label>
+        <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.phone')}</label>
         <input 
           type="tel" 
           name="phone"
           value={formData.phone}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy transition-all duration-300" 
+          className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+          style={{
+            backgroundColor: 'rgba(252, 230, 206, 0.1)',
+            borderColor: 'rgba(242, 140, 40, 0.3)',
+            color: '#FCE6CE'
+          }}
+          onFocus={(e) => {
+            e.target.style.backgroundColor = 'white';
+            e.target.style.color = '#001F3F';
+            e.target.style.borderColor = '#F28C28';
+          }}
+          onBlur={(e) => {
+            e.target.style.backgroundColor = 'rgba(252, 230, 206, 0.1)';
+            e.target.style.color = '#FCE6CE';
+            e.target.style.borderColor = 'rgba(242, 140, 40, 0.3)';
+          }}
           placeholder="+1 (555) 000-0000"
         />
       </div>
 
       <div>
-        <label className="block text-beige mb-3">{tContact('form.message')}</label>
+        <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.message')}</label>
         <textarea 
           rows={5} 
           name="message"
           value={formData.message}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-2xl bg-beige/10 border border-orange/20 text-beige placeholder-beige/60 focus:border-orange focus:outline-none focus:bg-white focus:text-navy resize-none transition-all duration-300" 
+          className="w-full px-4 py-3 rounded-2xl border resize-none transition-all duration-300 focus:outline-none" 
+          style={{
+            backgroundColor: 'rgba(252, 230, 206, 0.1)',
+            borderColor: 'rgba(242, 140, 40, 0.3)',
+            color: '#FCE6CE'
+          }}
+          onFocus={(e) => {
+            e.target.style.backgroundColor = 'white';
+            e.target.style.color = '#001F3F';
+            e.target.style.borderColor = '#F28C28';
+          }}
+          onBlur={(e) => {
+            e.target.style.backgroundColor = 'rgba(252, 230, 206, 0.1)';
+            e.target.style.color = '#FCE6CE';
+            e.target.style.borderColor = 'rgba(242, 140, 40, 0.3)';
+          }}
           placeholder={tContact('form.messagePlaceholder')}
           required
         />
@@ -160,6 +235,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         type="submit" 
         disabled={isSubmitting}
         className={getButtonClass()}
+        style={{ backgroundColor: '#F28C28' }}
       >
         {getButtonText()}
       </button>

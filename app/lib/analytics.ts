@@ -1,8 +1,11 @@
 // Google Analytics configuration
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'G-2H1KZ0DHN7';
 
-// Only enable Google Analytics in production or when explicitly enabled
-export const GA_ENABLED = process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_GA_DEBUG === 'true';
+// Enable Google Analytics in production OR when force enabled OR in debug mode
+export const GA_ENABLED = 
+  process.env.NODE_ENV === 'production' || 
+  process.env.NEXT_PUBLIC_GA_FORCE_ENABLE === 'true' ||
+  process.env.NEXT_PUBLIC_GA_DEBUG === 'true';
 
 // Debug mode for development
 export const GA_DEBUG = process.env.NEXT_PUBLIC_GA_DEBUG === 'true';

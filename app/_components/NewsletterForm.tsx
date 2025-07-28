@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { buildApiUrl } from '../lib/api';
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState('');
@@ -15,9 +16,23 @@ export default function NewsletterForm() {
 
     setStatus('sending');
 
-    // Simulate API call - replace with actual newsletter subscription logic
+    // Replace with actual newsletter subscription API call
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('Subscribing email:', email);
+      const url = buildApiUrl('/newsletter');
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`API request failed: ${response.status}`);
+      }
+      
+      console.log('Newsletter API response:', response);
       
       setStatus('sent');
       setEmail('');
@@ -27,6 +42,7 @@ export default function NewsletterForm() {
         setStatus('idle');
       }, 2000);
     } catch (error) {
+      console.error('Newsletter subscription error:', error);
       setStatus('error');
       
       // Reset status after 3 seconds

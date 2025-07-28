@@ -3,25 +3,26 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { trackEvent } from './GoogleAnalytics';
+import { buildApiUrl } from '../lib/api';
 
 interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
+  name: string;
+  familyName: string;
+  Email: string;
   phone: string;
   message: string;
 }
 
 interface ContactFormProps {
-  onSubmit?: (data: FormData) => void;
+  onSubmit?: (data: FormData) => Promise<void>;
 }
 
-export default function ContactForm({ onSubmit }: ContactFormProps) {
+export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
   const tContact = useTranslations('contact');
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
+    name: '',
+    familyName: '',
+    Email: '',
     phone: '',
     message: ''
   });
@@ -37,6 +38,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -48,8 +50,32 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       if (onSubmit) {
         await onSubmit(formData);
       } else {
-        // Default behavior: simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Default behavior: submit to your backend API
+        console.log('Submitting to API:', formData);
+        const url = buildApiUrl('/contacts');
+        
+        // Prepare data with timestamp and email routing for backend
+        const backendData = {
+          ...formData,
+          messageSentAt: new Date().toISOString(),
+        };
+        
+        console.log('Backend data:', backendData);
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(backendData),
+        });
+
+        console.log('API response:', await response.json());
+        
+        if (!response.ok) {
+          throw new Error(`API request failed: ${response.status}`);
+        }
+        
+        console.log('API response:', response);
       }
 
       setSubmitStatus('success');
@@ -60,9 +86,9 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       // Reset form after successful submission
       setTimeout(() => {
         setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
+          name: '',
+          familyName: '',
+          Email: '',
           phone: '',
           message: ''
         });
@@ -106,8 +132,8 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.firstName')}</label>
           <input 
             type="text" 
-            name="firstName"
-            value={formData.firstName}
+            name="name"
+            value={formData.name}
             onChange={handleInputChange}
             className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
             style={{
@@ -133,8 +159,8 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.lastName')}</label>
           <input 
             type="text" 
-            name="lastName"
-            value={formData.lastName}
+            name="familyName"
+            value={formData.familyName}
             onChange={handleInputChange}
             className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
             style={{
@@ -162,8 +188,8 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.email')}</label>
         <input 
           type="email" 
-          name="email"
-          value={formData.email}
+          name="Email"
+          value={formData.Email}
           onChange={handleInputChange}
           className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
           style={{

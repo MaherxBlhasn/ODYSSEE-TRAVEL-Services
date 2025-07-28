@@ -1,6 +1,14 @@
 import { getTranslations } from 'next-intl/server';
 import ContactForm from './ContactForm';
 
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 export default async function ContactSection() {
   const tContact = await getTranslations('contact');
 

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { fetchOffers, processOfferData } from '../lib/offers';
 import type { ProcessedOffer } from '../types/offers';
+import OfferCardLink from './OfferCardLink';
 
 export default async function OffersSection({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -107,13 +108,13 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
                     )}
                   </div>
                   <div className="flex flex-col gap-3">
-                    <Link 
-                      href={`/${locale}/offers/${offer.id}`} 
+                    <OfferCardLink 
+                      href={`/${locale}/offers/${offer.id}`}
                       className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-center" 
                       style={{ backgroundColor: '#001F3F' }}
                     >
                       More Details
-                    </Link>
+                    </OfferCardLink>
                     <Link 
                       href={`/${locale}#contact`} 
                       className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-center" 

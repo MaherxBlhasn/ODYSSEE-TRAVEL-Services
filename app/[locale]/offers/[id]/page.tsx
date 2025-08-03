@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fetchOffers } from '../../../lib/offers';
 import ImageGalleryPreview from '@/app/_components/ImageGalleryPreview';
+import BackButton from '@/app/_components/BackButton';
 import type { Offer } from '../../../types/offers';
 
 interface OfferDetailsPageProps {
@@ -50,17 +51,10 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
       <div className="absolute inset-0" style={{ backgroundColor: 'rgba(252, 230, 206, 0.85)' }}></div>
       
       <div className="relative z-10">
-        {/* Enhanced Back Button - More spacing from navbar */}
+        {/* Enhanced Back Button with Loading - More spacing from navbar */}
         <div className="pt-32 px-6 mb-6">
           <div className="container mx-auto max-w-7xl">
-            <Link 
-              href={`/${locale}#offers`}
-              className="group inline-flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:shadow-xl backdrop-blur-sm"
-            >
-              <span className="mr-3 text-lg transition-transform duration-300 group-hover:-translate-x-2">←</span>
-              <span className="text-base">Back to Offers</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+            <BackButton href={`/${locale}#offers`} />
           </div>
         </div>
 

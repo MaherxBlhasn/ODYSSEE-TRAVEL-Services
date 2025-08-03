@@ -32,10 +32,10 @@ const Footer = () => {
                                 unoptimized
                             />
                         </div>
-                        <div className="flex-1">
+                        {/* <div className="flex-1">
                             <h3 className="text-lg sm:text-xl font-bold leading-tight" style={{ color: '#FCE6CE' }}>{tCompany('name')}</h3>
                             <p className="text-xs sm:text-sm mt-1" style={{ color: '#F28C28' }}>{tCompany('tagline')}</p>
-                        </div>
+                        </div> */}
                     </Link>
                     <p className="leading-relaxed text-sm max-w-xs sm:max-w-sm mx-auto lg:mx-0" style={{ 
                       color: '#FCE6CE', 

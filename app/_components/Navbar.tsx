@@ -46,10 +46,10 @@ const Navbar = () => {
                     unoptimized
                   />
                 </div>
-                <div>
+                {/* <div>
                   <h1 className="text-xl font-bold" style={{ color: '#FCE6CE' }}>{tCompany('name')}</h1>
                   <p className="text-sm" style={{ color: '#F28C28' }}>{tCompany('tagline')}</p>
-                </div>
+                </div> */}
               </Link>
 
               {/* Desktop Navigation */}

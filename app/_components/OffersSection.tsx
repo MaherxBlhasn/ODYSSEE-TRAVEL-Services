@@ -9,7 +9,6 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
 
   // Fetch offers from backend API
   const offersResponse = await fetchOffers();
-  console.log('offersResponse:', offersResponse);
   
   // Process the offers data to match component format - optimized for server-side
   const processedOffers = offersResponse.success && offersResponse.data?.length
@@ -107,8 +106,19 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
                       </div>
                     )}
                   </div>
-                  <div className="flex justify-between items-center">
-                    <Link href={`/${locale}#contact`} className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl w-full text-center" style={{ backgroundColor: '#F28C28' }}>
+                  <div className="flex flex-col gap-3">
+                    <Link 
+                      href={`/${locale}/offers/${offer.id}`} 
+                      className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-center" 
+                      style={{ backgroundColor: '#001F3F' }}
+                    >
+                      More Details
+                    </Link>
+                    <Link 
+                      href={`/${locale}#contact`} 
+                      className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-center" 
+                      style={{ backgroundColor: '#F28C28' }}
+                    >
                       {tOffers('bookNow')}
                     </Link>
                   </div>

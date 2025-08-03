@@ -8,8 +8,9 @@ export async function fetchOffers(): Promise<OffersResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: 'no-store',
       // Add cache revalidation for better performance
-      next: { revalidate: 300 }, // Revalidate every 5 minutes
+      // next: { revalidate: 300 }, //Revalidate every 5 minutes
     });
 
     if (!response.ok) {
@@ -17,7 +18,6 @@ export async function fetchOffers(): Promise<OffersResponse> {
     }
 
     const rawData = await response.json();
-    console.log('Raw API response:', rawData);
 
     // Check if the response is an array of offers or a single offer
     let offers: Offer[] = [];

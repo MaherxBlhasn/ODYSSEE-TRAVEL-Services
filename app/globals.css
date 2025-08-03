@@ -49,6 +49,16 @@ html {
   }
 }
 
+/* Hide navbar when modal is open */
+body.modal-open nav {
+  display: none !important;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden !important;
+}
+
 /* For browsers that don't support scroll-behavior */
 * {
   scroll-behavior: smooth;

@@ -6,10 +6,10 @@ import { GA_TRACKING_ID, GA_ENABLED, GA_CONFIG } from '../lib/analytics';
 export default function GoogleAnalytics() {
   // Debug logging only in development
   if (process.env.NODE_ENV === 'development') {
-    console.log('🔍 GoogleAnalytics component render check:');
-    console.log('- GA_ENABLED:', GA_ENABLED);
-    console.log('- GA_TRACKING_ID:', GA_TRACKING_ID);
-    console.log('- NODE_ENV:', process.env.NODE_ENV);
+    // console.log('🔍 GoogleAnalytics component render check:');
+    // console.log('- GA_ENABLED:', GA_ENABLED);
+    // console.log('- GA_TRACKING_ID:', GA_TRACKING_ID);
+    // console.log('- NODE_ENV:', process.env.NODE_ENV);
   }
 
   // Only render when enabled

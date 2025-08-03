@@ -52,15 +52,15 @@ export default function GATestPanel() {
     {
       name: 'Debug Info',
       action: () => {
-        console.group('🔍 GA Debug Information');
-        console.log('GA_ENABLED:', GA_ENABLED);
-        console.log('GA_DEBUG:', GA_DEBUG);
-        console.log('GA_TRACKING_ID:', GA_TRACKING_ID);
-        console.log('Script loaded:', gaStatus.scriptLoaded);
-        console.log('gtag available:', gaStatus.gtagAvailable);
-        console.log('dataLayer exists:', gaStatus.dataLayerExists);
-        console.log('dataLayer content:', window.dataLayer);
-        console.log('All GA scripts:', Array.from(document.querySelectorAll('script[src*="google"]')));
+        // console.group('🔍 GA Debug Information');
+        // console.log('GA_ENABLED:', GA_ENABLED);
+        // console.log('GA_DEBUG:', GA_DEBUG);
+        // console.log('GA_TRACKING_ID:', GA_TRACKING_ID);
+        // console.log('Script loaded:', gaStatus.scriptLoaded);
+        // console.log('gtag available:', gaStatus.gtagAvailable);
+        // console.log('dataLayer exists:', gaStatus.dataLayerExists);
+        // console.log('dataLayer content:', window.dataLayer);
+        // console.log('All GA scripts:', Array.from(document.querySelectorAll('script[src*="google"]')));
         console.groupEnd();
       }
     }

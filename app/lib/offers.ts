@@ -38,7 +38,6 @@ export async function fetchOffers(): Promise<OffersResponse> {
       message: 'Offers fetched successfully'
     };
     
-    console.log('Processed offers data:', data);
     return data;
   } catch (error) {
     console.error('Error fetching offers:', error);

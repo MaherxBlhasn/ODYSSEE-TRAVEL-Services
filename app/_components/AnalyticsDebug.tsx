@@ -7,12 +7,12 @@ export default function AnalyticsDebug() {
   useEffect(() => {
     // Only log in development mode
     if (process.env.NODE_ENV === 'development') {
-      console.group('🔍 Google Analytics Debug Info');
-      console.log('📊 Tracking ID:', GA_TRACKING_ID);
-      console.log('✅ Enabled:', GA_ENABLED ? 'Yes' : 'No');
-      console.log('🐛 Debug Mode:', GA_DEBUG ? 'Yes' : 'No');
-      console.log('🌍 Environment:', process.env.NODE_ENV);
-      console.log('🔧 gtag available:', typeof window !== 'undefined' && !!window.gtag ? 'Yes' : 'No');
+      // console.group('🔍 Google Analytics Debug Info');
+      // console.log('📊 Tracking ID:', GA_TRACKING_ID);
+      // console.log('✅ Enabled:', GA_ENABLED ? 'Yes' : 'No');
+      // console.log('🐛 Debug Mode:', GA_DEBUG ? 'Yes' : 'No');
+      // console.log('🌍 Environment:', process.env.NODE_ENV);
+      // console.log('🔧 gtag available:', typeof window !== 'undefined' && !!window.gtag ? 'Yes' : 'No');
       console.groupEnd();
     }
   }, []);

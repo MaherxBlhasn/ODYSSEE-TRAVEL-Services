@@ -21,13 +21,14 @@ const Footer = () => {
                 <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 <div className="col-span-2 lg:col-span-1 text-center lg:text-left mb-8 lg:mb-0">
                     <Link href={`/${locale}`} className="flex items-center justify-center lg:justify-start space-x-2 mb-4 sm:mb-6">
-                        <div className="w-12 sm:w-14 h-12 sm:h-14 rounded-full overflow-hidden shadow-lg">
+                        <div className="overflow-hidden shadow-lg rounded-md">
                             <Image
                                 src="/LOGO.png"
                                 alt="Odyssee Travel Services Logo"
-                                width={56}
-                                height={56}
-                                className="w-full h-full object-cover"
+                                width={0}
+                                height={0}
+                                sizes="100vw"
+                                className="w-auto h-auto object-contain"
                                 priority
                                 unoptimized
                             />

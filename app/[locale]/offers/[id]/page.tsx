@@ -102,7 +102,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                             </span>
                             Quick Overview
                           </h3>
-                          <p className="text-gray-700 leading-relaxed text-base">
+                          <p className="text-gray-700 leading-relaxed text-base line-clamp-3">
                             {offer.shortDescription}
                           </p>
                         </div>
@@ -116,8 +116,8 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                             </span>
                             Complete Details
                           </h3>
-                          <p className="text-gray-700 leading-relaxed text-base">
-                            {offer.bigDescription || offer.shortDescription}
+                          <p className="text-gray-700 leading-relaxed text-base line-clamp-4">
+                            {offer.bigDescription || "No detailed description available for this offer."}
                           </p>
                         </div>
                       </div>
@@ -249,29 +249,3 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
   );
 }
 
-// Generate metadata for SEO
-export async function generateMetadata({ params }: OfferDetailsPageProps) {
-  const { locale, id } = await params;
-  
-  // Fetch the offer for metadata
-  const offersResponse = await fetchOffers();
-  const offer = offersResponse.success 
-    ? offersResponse.data.find((o: Offer) => o.id === id)
-    : null;
-
-  if (!offer) {
-    return {
-      title: 'Offer Not Found',
-    };
-  }
-
-  return {
-    title: `${offer.title} - Odyssee Travel Services`,
-    description: offer.shortDescription || offer.bigDescription,
-    openGraph: {
-      title: offer.title,
-      description: offer.shortDescription,
-      images: [offer.mainImageUrl || offer.imageUrls?.[0]],
-    },
-  };
-}

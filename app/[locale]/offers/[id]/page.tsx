@@ -121,6 +121,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                           </p>
                         </div>
                       </div>
+                      
                     </div>
                   </div>
                 </div>

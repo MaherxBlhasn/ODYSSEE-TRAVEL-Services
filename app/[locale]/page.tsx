@@ -1,7 +1,7 @@
-import { getTranslations } from 'next-intl/server';
+// import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import HeroSection from '../_components/HeroSection';
-import FeaturesSection from '../_components/FeaturesSection';
+// import FeaturesSection from '../_components/FeaturesSection';
 import OffersSection from '../_components/OffersSection';
 import MapSection from '../_components/MapSection';
 import AboutSection from '../_components/AboutSection';

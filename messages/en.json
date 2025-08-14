@@ -54,6 +54,11 @@
   "offers": {
     "title": "Special Offers",
     "subtitle": "Discover amazing deals and exclusive packages for your next adventure",
+    "noOffers": {
+      "title": "No Offers Available",
+      "description": "We're currently working on new amazing travel experiences and exclusive packages just for you!",
+      "getNotified": "Get Notified When Available"
+    },
     "europeanExplorer": {
       "title": "European Explorer",
       "description": "Discover the charm of Europe with our curated 14-day journey through iconic cities and hidden gems.",

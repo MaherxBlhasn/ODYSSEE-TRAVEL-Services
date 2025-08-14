@@ -53,9 +53,9 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
           <p className="text-xl max-w-3xl mx-auto" style={{ color: '#001F3F', opacity: 0.8, textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>{tOffers('subtitle')}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {processedOffers.length > 0 ? (
-            processedOffers.map((offer: ProcessedOffer, index: number) => (
+        {processedOffers.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {processedOffers.map((offer: ProcessedOffer, index: number) => (
               <div
                 key={offer.id}
                 className={`bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl hover:bg-white/95 transition-all duration-500 border border-gray-200 hover:scale-105 ${getRotationClass(index)}`}
@@ -125,81 +125,39 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
                   </div>
                 </div>
               </div>
-            ))
-          ) : (
-            // Fallback to static offers if API fails
-            <>
-              <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl hover:bg-white/95 transition-all duration-500 border border-gray-200 hover:scale-105 hover:rotate-1">
-                <div className="h-48 relative" style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute bottom-4 left-4 text-white bg-black/30 rounded-lg px-3 py-1 border border-white/20">
-                    <span className="text-lg font-semibold drop-shadow-lg">Europe Explorer</span>
-                  </div>
-                </div>
-                <div className="p-6 bg-white">
-                  <h3 className="text-2xl font-bold mb-3" style={{ color: '#001F3F' }}>{tOffers('europeanExplorer.title')}</h3>
-                  <p className="mb-4" style={{ color: '#001F3F', opacity: 0.8, lineHeight: 1.5 }}>{tOffers('europeanExplorer.description')}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-3xl font-bold drop-shadow-lg" style={{ color: '#F28C28' }}>{tOffers('europeanExplorer.price')}</span>
-                    <Link href={`/${locale}#contact`} className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" style={{ backgroundColor: '#F28C28' }}>
-                      {tOffers('bookNow')}
-                    </Link>
-                  </div>
+            ))}
+          </div>
+        ) : (
+          // No offers available state - positioned closer to header
+          <div className="flex justify-center">
+            <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 max-w-lg w-full mx-4 text-center border border-gray-200/50 hover:shadow-2xl transition-all duration-300">
+              {/* Icon */}
+              <div className="mb-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#FCE6CE' }}>
+                  <span className="text-3xl sm:text-4xl">✈️</span>
                 </div>
               </div>
-
-              <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl hover:bg-white/95 transition-all duration-500 border border-gray-200 hover:scale-105 hover:-rotate-1">
-                <div className="h-48 relative" style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute bottom-4 left-4 text-white bg-black/30 rounded-lg px-3 py-1 border border-white/20">
-                    <span className="text-lg font-semibold drop-shadow-lg">Tropical Paradise</span>
-                  </div>
-                </div>
-                <div className="p-6 bg-white">
-                  <h3 className="text-2xl font-bold mb-3" style={{ color: '#001F3F' }}>{tOffers('tropicalParadise.title')}</h3>
-                  <p className="mb-4" style={{ color: '#001F3F', opacity: 0.8, lineHeight: 1.5 }}>{tOffers('tropicalParadise.description')}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-3xl font-bold drop-shadow-lg" style={{ color: '#F28C28' }}>{tOffers('tropicalParadise.price')}</span>
-                    <Link href={`/${locale}#contact`} className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" style={{ backgroundColor: '#F28C28' }}>
-                      {tOffers('bookNow')}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl hover:bg-white/95 transition-all duration-500 border border-gray-200 hover:scale-105 hover:rotate-1">
-                <div className="h-48 relative" style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute bottom-4 left-4 text-white bg-black/30 rounded-lg px-3 py-1 border border-white/20">
-                    <span className="text-lg font-semibold drop-shadow-lg">Cultural Journey</span>
-                  </div>
-                </div>
-                <div className="p-6 bg-white">
-                  <h3 className="text-2xl font-bold mb-3" style={{ color: '#001F3F' }}>{tOffers('culturalImmersion.title')}</h3>
-                  <p className="mb-4" style={{ color: '#001F3F', opacity: 0.8, lineHeight: 1.5 }}>{tOffers('culturalImmersion.description')}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-3xl font-bold drop-shadow-lg" style={{ color: '#F28C28' }}>{tOffers('culturalImmersion.price')}</span>
-                    <Link href={`/${locale}#contact`} className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl" style={{ backgroundColor: '#F28C28' }}>
-                      {tOffers('bookNow')}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+              
+              {/* Message */}
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: '#001F3F' }}>
+                {tOffers('noOffers.title')}
+              </h3>
+              
+              <p className="text-base sm:text-lg mb-8 leading-relaxed" style={{ color: '#001F3F', opacity: 0.7 }}>
+                {tOffers('noOffers.description')}
+              </p>
+              
+              {/* Call to action */}
+              <Link 
+                href={`/${locale}#contact`}
+                className="inline-block px-8 py-3 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg transform"
+                style={{ backgroundColor: '#F28C28' }}
+              >
+                {tOffers('noOffers.getNotified')}
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

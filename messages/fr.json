@@ -55,6 +55,11 @@
   "offers": {
     "title": "Offres Spéciales",
     "subtitle": "Découvrez des offres incroyables et des forfaits exclusifs pour votre prochaine aventure",
+    "noOffers": {
+      "title": "Aucune Offre Disponible",
+      "description": "Nous travaillons actuellement sur de nouvelles expériences de voyage extraordinaires et des forfaits exclusifs rien que pour vous !",
+      "getNotified": "Être Notifié Lorsque Disponible"
+    },
     "europeanExplorer": {
       "title": "Explorateur Européen",
       "description": "Découvrez le charme de l'Europe avec notre voyage de 14 jours à travers des villes emblématiques et des joyaux cachés.",

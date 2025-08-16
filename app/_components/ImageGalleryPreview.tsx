@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface ImageGalleryPreviewProps {
   mainImage: string;
@@ -11,6 +12,7 @@ interface ImageGalleryPreviewProps {
 export default function ImageGalleryPreview({ mainImage, images, title }: ImageGalleryPreviewProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const t = useTranslations('offers.details.gallery');
   
   // Combine main image with gallery images
   const allImages = [mainImage, ...images];
@@ -125,7 +127,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                     setSelectedImage((prev) => (prev - 1 + allImages.length) % allImages.length);
                   }}
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-gray-800 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-gray-200/50 z-10"
-                  aria-label="Previous image"
+                  aria-label={t('previousImage')}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
@@ -137,7 +139,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                     setSelectedImage((prev) => (prev + 1) % allImages.length);
                   }}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/95 hover:bg-white text-gray-800 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-gray-200/50 z-10"
-                  aria-label="Next image"
+                  aria-label={t('nextImage')}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
@@ -172,7 +174,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                 </svg>
               </div>
               <div>
-                <h3 className="font-bold text-lg">Photo Gallery</h3>
+                <h3 className="font-bold text-lg">{t('photoGallery')}</h3>
                 <p className="text-sm text-gray-500">{allImages.length} high-quality images</p>
               </div>
             </div>
@@ -273,7 +275,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                 padding: '8px',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
               }}
-              aria-label="Close modal"
+              aria-label={t('closeModal')}
             >
               <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -284,7 +286,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
             <div className="fixed top-4 left-4 bg-black/70 text-white px-4 py-2 rounded-xl backdrop-blur-md text-sm border border-white/20 z-[99999]">
               <span className="flex items-center gap-2">
                 <span className="bg-white/20 px-2 py-1 rounded font-mono text-xs">ESC</span>
-                <span>to close</span>
+                <span>{t('toClose')}</span>
               </span>
             </div>
             
@@ -302,7 +304,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                   <button
                     onClick={() => setSelectedImage((prev) => (prev - 1 + allImages.length) % allImages.length)}
                     className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 shadow-xl"
-                    aria-label="Previous image"
+                    aria-label={t('previousImage')}
                   >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
@@ -311,7 +313,7 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                   <button
                     onClick={() => setSelectedImage((prev) => (prev + 1) % allImages.length)}
                     className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full backdrop-blur-md transition-all duration-300 hover:scale-110 border border-white/20 shadow-xl"
-                    aria-label="Next image"
+                    aria-label={t('nextImage')}
                   >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
@@ -328,18 +330,18 @@ export default function ImageGalleryPreview({ mainImage, images, title }: ImageG
                 <div className="text-sm opacity-90 mb-2">
                   Image {selectedImage + 1} of {allImages.length}
                   {selectedImage === 0 && (
-                    <span className="ml-2 bg-blue-600 px-2 py-1 rounded text-xs font-semibold">MAIN</span>
+                    <span className="ml-2 bg-blue-600 px-2 py-1 rounded text-xs font-semibold">{t('main')}</span>
                   )}
                 </div>
                 <div className="flex items-center justify-center gap-4 text-xs opacity-75">
                   <span className="flex items-center gap-1">
                     <span className="bg-white/20 px-2 py-1 rounded font-mono">←</span>
                     <span className="bg-white/20 px-2 py-1 rounded font-mono">→</span>
-                    <span>Navigate</span>
+                    <span>{t('navigate')}</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <span className="bg-white/20 px-2 py-1 rounded font-mono">ESC</span>
-                    <span>Close</span>
+                    <span>{t('close')}</span>
                   </span>
                 </div>
               </div>

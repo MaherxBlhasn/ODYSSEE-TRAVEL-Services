@@ -7,16 +7,37 @@ export interface Offer {
   destination: string;
   duration: number;
   stars: number;
-  mainImageUrl: string;
-  imageUrls: string[];
+  mainImage?: string;
+  mainImageUrl?: string;
+  mainImageFullUrl?: string;
+  images?: string[];
+  imageUrls?: string[];
   available: boolean;
   createdAt: string;
+  updatedAt?: string;
+  currentLanguage?: string;
+  translations?: {
+    en: {
+      title: string;
+      shortDescription: string;
+      bigDescription: string;
+      destination: string;
+    };
+    fr: {
+      title: string;
+      shortDescription: string;
+      bigDescription: string;
+      destination: string;
+    };
+  };
   imageComparison?: {
     hasMainImage: boolean;
     hasGalleryImages: boolean;
     totalImages: number;
     mainImageType: string;
     galleryCount: number;
+    mainImageFullUrl?: string;
+    galleryImagesFullUrls?: string[];
   };
 }
 
@@ -31,10 +52,36 @@ export interface ProcessedOffer {
   duration?: string;
   location?: string;
   featured?: boolean;
+  translations?: {
+    en: {
+      title: string;
+      shortDescription: string;
+      bigDescription: string;
+      destination: string;
+    };
+    fr: {
+      title: string;
+      shortDescription: string;
+      bigDescription: string;
+      destination: string;
+    };
+  };
+  bigDescription?: string;
+  shortDescription?: string;
+  destination?: string;
+  images?: string[];
+  currentLanguage?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface OffersResponse {
   success: boolean;
   data: Offer[];
   message?: string;
+  metadata?: {
+    language: string;
+    totalOffers: number;
+    includesTranslations: boolean;
+  };
 }

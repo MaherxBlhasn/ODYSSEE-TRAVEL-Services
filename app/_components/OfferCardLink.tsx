@@ -19,11 +19,10 @@ export default function OfferCardLink({ href, children, className = '', style }:
   const handleClick = async (e: React.MouseEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Add a small delay to show the loading state
+
     setTimeout(() => {
       router.push(href);
-    }, 300);
+    }, 500); // Increased delay to better show loading
   };
 
   return (
@@ -31,7 +30,7 @@ export default function OfferCardLink({ href, children, className = '', style }:
       <Link href={href} onClick={handleClick} className={className} style={style}>
         {children}
       </Link>
-      
+
       {/* Loading overlay for this specific navigation */}
       {isLoading && (
         <div className="fixed inset-0 bg-white/90 backdrop-blur-sm z-[99999] flex items-center justify-center">

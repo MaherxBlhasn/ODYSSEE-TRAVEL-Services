@@ -75,7 +75,39 @@
       "description": "Plongez profondément dans les cultures et traditions locales avec nos circuits d'expérience culturelle authentique.",
       "price": "2 499 €"
     },
-    "bookNow": "Réserver Maintenant"
+    "bookNow": "Réserver Maintenant",
+    "details": {
+      "more": "Plus de Détails",
+      "backToOffers": "Retour aux Offres",
+      "aboutExperience": "À Propos de Cette Expérience",
+      "aboutDescription": "Découvrez ce qui rend ce voyage vraiment spécial",
+      "quickOverview": "Aperçu Rapide",
+      "completeDetails": "Détails Complets",
+      "noDescription": "Aucune description détaillée disponible pour cette offre.",
+      "destination": "Destination",
+      "duration": "Durée",
+      "days": "jours",
+      "availableNow": "Disponible Maintenant",
+      "readyToBook": "Prêt à réserver instantanément",
+      "professionalService": "Service Professionnel",
+      "professionalDescription": "Accompagnement expert tout au long de votre voyage",
+      "bestPriceGuarantee": "Garantie du Meilleur Prix",
+      "bestPriceDescription": "Tarifs compétitifs avec une qualité premium",
+      "secureBooking": "Réservation 100% Sécurisée",
+      "secureDescription": "Réservations sûres et protégées",
+      "bookThisAdventure": "Réserver Cette Aventure",
+      "excellentRating": "Excellente note",
+      "gallery": {
+        "photoGallery": "Galerie Photo",
+        "toClose": "pour fermer",
+        "main": "PRINCIPAL",
+        "navigate": "Naviguer",
+        "close": "Fermer",
+        "previousImage": "Image précédente",
+        "nextImage": "Image suivante",
+        "closeModal": "Fermer la galerie"
+      }
+    }
   },
   "map": {
     "title": "Explorez Nos Destinations",
@@ -140,5 +172,13 @@
   "language": {
     "english": "English",
     "french": "Français"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "pleaseWait": "Veuillez patienter pendant que nous mettons à jour le contenu",
+    "changingLanguage": "Changement de langue...",
+    "loadingOffers": "Chargement des offres...",
+    "loadingDetails": "Chargement des détails...",
+    "returningToOffers": "Retour aux offres..."
   }
 }

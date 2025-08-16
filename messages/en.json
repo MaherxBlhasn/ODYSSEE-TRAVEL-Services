@@ -74,7 +74,39 @@
       "description": "Dive deep into local cultures and traditions with our authentic cultural experience tours.",
       "price": "$2,499"
     },
-    "bookNow": "Book Now"
+    "bookNow": "Book Now",
+    "details": {
+      "more": "More Details",
+      "backToOffers": "Back to Offers",
+      "aboutExperience": "About This Experience",
+      "aboutDescription": "Discover what makes this journey truly special",
+      "quickOverview": "Quick Overview",
+      "completeDetails": "Complete Details",
+      "noDescription": "No detailed description available for this offer.",
+      "destination": "Destination",
+      "duration": "Duration",
+      "days": "days",
+      "availableNow": "Available Now",
+      "readyToBook": "Ready to book instantly",
+      "professionalService": "Professional Service",
+      "professionalDescription": "Expert guidance throughout your journey",
+      "bestPriceGuarantee": "Best Price Guarantee",
+      "bestPriceDescription": "Competitive rates with premium quality",
+      "secureBooking": "100% Secure Booking",
+      "secureDescription": "Safe and protected reservations",
+      "bookThisAdventure": "Book This Adventure",
+      "excellentRating": "Excellent rating",
+      "gallery": {
+        "photoGallery": "Photo Gallery",
+        "toClose": "to close",
+        "main": "MAIN",
+        "navigate": "Navigate",
+        "close": "Close",
+        "previousImage": "Previous image",
+        "nextImage": "Next image",
+        "closeModal": "Close modal"
+      }
+    }
   },
   "map": {
     "title": "Explore Our Destinations",
@@ -142,5 +174,13 @@
   "language": {
     "english": "English",
     "french": "Français"
+  },
+  "common": {
+    "loading": "Loading...",
+    "pleaseWait": "Please wait while we update the content",
+    "changingLanguage": "Changing Language...",
+    "loadingOffers": "Loading Offers...",
+    "loadingDetails": "Loading Details...",
+    "returningToOffers": "Returning to offers..."
   }
 }

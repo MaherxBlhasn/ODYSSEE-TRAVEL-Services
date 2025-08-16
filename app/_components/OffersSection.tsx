@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { fetchOffers, processOfferData } from '../lib/offers';
+import { getOfferInLanguage } from '../lib/offerLanguageUtils';
 import type { ProcessedOffer } from '../types/offers';
 import OfferCardLink from './OfferCardLink';
 
@@ -15,7 +16,12 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
   const processedOffers = offersResponse.success && offersResponse.data?.length
     ? offersResponse.data
         .filter(offer => offer.available) // Only show available offers
-        .map(offer => processOfferData(offer))
+        .map(offer => {
+          const processedOffer = processOfferData(offer);
+          // Get localized version based on current locale
+          const localizedOffer = getOfferInLanguage(processedOffer, locale as 'en' | 'fr');
+          return { ...processedOffer, ...localizedOffer };
+        })
     : [];
   
 
@@ -113,7 +119,7 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
                       className="px-6 py-2 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-center" 
                       style={{ backgroundColor: '#001F3F' }}
                     >
-                      More Details
+                      {tOffers('details.more')}
                     </OfferCardLink>
                     <Link 
                       href={`/${locale}#contact`} 

@@ -17,7 +17,7 @@ export default async function ContactSection() {
       background: 'linear-gradient(135deg, #001F3F 0%, #003366 100%)'
     }}>
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 fade-in">
+        <div className="text-center mb-16 fade-in" suppressHydrationWarning>
           <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ 
             color: '#FCE6CE',
             textShadow: '0 2px 4px rgba(0,0,0,0.3)'
@@ -29,11 +29,11 @@ export default async function ContactSection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16">
-          <div className="fade-in">
+          <div className="fade-in" suppressHydrationWarning>
             <ContactForm />
           </div>
 
-          <div className="fade-in">
+          <div className="fade-in" suppressHydrationWarning>
             <div className="rounded-2xl p-8 border border-orange/20" style={{
               backgroundColor: 'rgba(252, 230, 206, 0.1)'
             }}>

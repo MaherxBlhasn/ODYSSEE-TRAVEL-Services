@@ -26,7 +26,7 @@
   "company": {
     "name": "ODYSSEE",
     "tagline": "TRAVEL SERVICE",
-    "description": "Creating unforgettable journeys and extraordinary experiences for travelers worldwide."
+    "description": "Specializing in guided tours to Tunisia's magnificent UNESCO World Heritage sites and ancient archaeological treasures, from Roman amphitheaters to Phoenician ruins."
   },
   "newsletter": {
     "title": "Newsletter Subscription",
@@ -110,8 +110,8 @@
     }
   },
   "map": {
-    "title": "Explore Our Destinations",
-    "subtitle": "From bustling cities to serene landscapes, we cover destinations worldwide",
+    "title": "Let Us Guide You Through Tunisia's Ancient Treasures",
+    "subtitle": "Explore remarkable UNESCO World Heritage sites and historical landmarks across Tunisia's rich archaeological landscape",
     "mediterraneanSea": "Mediterranean Sea",
     "legend": "Legend",
     "majorSites": "UNESCO Sites",

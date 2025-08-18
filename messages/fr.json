@@ -26,7 +26,7 @@
   "company": {
     "name": "ODYSSEE",
     "tagline": "SERVICE DE VOYAGE",
-    "description": "Créer des voyages inoubliables et des expériences extraordinaires pour les voyageurs du monde entier."
+    "description": "Spécialiste des circuits guidés à travers les magnifiques sites du patrimoine mondial de l'UNESCO en Tunisie et ses trésors archéologiques ancestraux, des amphithéâtres romains aux ruines phéniciennes."
   },
   "newsletter": {
     "title": "Abonnement Newsletter",
@@ -110,8 +110,8 @@
     }
   },
   "map": {
-    "title": "Explorez Nos Destinations",
-    "subtitle": "Des villes animées aux paysages sereins, nous couvrons des destinations dans le monde entier",
+    "title": "Laissez-Nous Vous Guider à Travers les Trésors Antiques de la Tunisie",
+    "subtitle": "Explorez les remarquables sites du patrimoine mondial de l'UNESCO et les monuments historiques à travers le paysage archéologique riche de la Tunisie",
     "mediterraneanSea": "Mer Méditerranée",
     "legend": "Légende",
     "majorSites": "Sites UNESCO",

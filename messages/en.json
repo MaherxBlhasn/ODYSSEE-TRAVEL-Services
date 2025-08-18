@@ -36,7 +36,8 @@
     "subscribed": "Subscribed!",
     "error": "Try again",
     "emailLabel": "Email address for newsletter"
-  },  "home": {
+  },
+  "home": {
     "getStarted": "Get Started",
     "learnMore": "Learn More",
     "flightBooking": "Flight Booking",
@@ -111,8 +112,14 @@
   "map": {
     "title": "Explore Our Destinations",
     "subtitle": "From bustling cities to serene landscapes, we cover destinations worldwide",
-    "comingSoon": "Interactive Map Coming Soon",
-    "description": "Explore our destinations with our interactive world map"
+    "mediterraneanSea": "Mediterranean Sea",
+    "legend": "Legend",
+    "majorSites": "UNESCO Sites",
+    "historicSites": "Historic Sites",
+    "agency": "Our Agency",
+    "unesco": "UNESCO",
+    "historic": "Historic",
+    "locale": "en"
   },
   "about": {
     "title": "About Odyssee Travel Services",

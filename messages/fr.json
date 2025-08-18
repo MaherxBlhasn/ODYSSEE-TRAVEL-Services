@@ -112,8 +112,15 @@
   "map": {
     "title": "Explorez Nos Destinations",
     "subtitle": "Des villes animées aux paysages sereins, nous couvrons des destinations dans le monde entier",
-    "comingSoon": "Carte Interactive Bientôt Disponible",
-    "description": "Explorez nos destinations avec notre carte interactive du monde"
+    "mediterraneanSea": "Mer Méditerranée",
+    "legend": "Légende",
+    "majorSites": "Sites UNESCO",
+    "historicSites": "Sites Historiques",
+    "agency": "Notre Agence",
+    "ourAgency": "Notre Agence",
+    "unesco": "UNESCO",
+    "historic": "Historique",
+    "locale": "fr"
   },
   "about": {
     "title": "À Propos d'Odyssee Travel Services",

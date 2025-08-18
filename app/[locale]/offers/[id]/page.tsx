@@ -221,7 +221,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                       </div>
 
                       {/* Ultra-Enhanced Book Button - Moved to last position */}
-                      <Link
+                      {/* <Link
                         href={`/${locale}#contact`}
                         className="w-full px-8 py-4 rounded-2xl text-white font-bold text-lg text-center block transition-all duration-500 hover:scale-110 shadow-2xl hover:shadow-3xl relative overflow-hidden group"
                         style={{
@@ -236,7 +236,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                         </span>
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </div>

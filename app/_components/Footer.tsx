@@ -59,10 +59,10 @@ const Footer = () => {
                 <div className="col-span-1 text-center lg:text-left mb-8 lg:mb-0">
                     <h4 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 border-b border-orange/20 pb-2 sm:pb-3 inline-block" style={{ color: '#FCE6CE' }}>{t('services')}</h4>
                     <ul className="space-y-2 sm:space-y-3">
-                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>✈️</span><span>{t('flightBooking')}</span></Link></li>
-                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🏨</span><span>{t('hotelReservations')}</span></Link></li>
-                        <li><Link href={`/${locale}#offers`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🗺️</span><span>{t('tourPackages')}</span></Link></li>
-                        <li><Link href={`/${locale}#contact`} className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🛡️</span><span>{t('travelInsurance')}</span></Link></li>
+                        <li><span className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>✈️</span><span>{t('flightBooking')}</span></span></li>
+                        <li><span className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🏨</span><span>{t('hotelReservations')}</span></span></li>
+                        <li><span className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🗺️</span><span>{t('tourPackages')}</span></span></li>
+                        <li><span className="hover:text-orange transition-colors flex items-center justify-center lg:justify-start space-x-2 text-sm" style={{ color: 'rgba(252, 230, 206, 0.9)' }}><span>🛡️</span><span>{t('travelInsurance')}</span></span></li>
                     </ul>
                 </div>
                 

@@ -19,7 +19,7 @@ export default function NewsletterForm() {
     // Replace with actual newsletter subscription API call
     try {
       console.log('Subscribing email:', email);
-      const url = buildApiUrl('/newsletter');
+      const url = buildApiUrl('/newspaper');
       const response = await fetch(url, {
         method: 'POST',
         headers: {

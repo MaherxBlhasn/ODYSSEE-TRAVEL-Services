@@ -93,7 +93,7 @@ const archaeologicalSites = [
 
 // Agency location in Tunis
 const agencyLocation = {
-  name: { en: 'Tunisia Explore Travel Agency', fr: 'Agence de Voyage Tunisia Explore' },
+  name: { en: 'Odyssee travel agency', fr: 'Agence de Voyage Odyssee' },
   coordinates: [36.8065, 10.1815], // Tunis center
   description: { 
     en: 'Your trusted partner for exploring Tunisia\'s archaeological treasures. Contact us for personalized tours!',

@@ -44,7 +44,10 @@ function FitBounds({ sites, agencyLocation }: { sites: any[], agencyLocation: an
     ];
     
     const bounds = new LatLngBounds(allCoordinates as [number, number][]);
-    map.fitBounds(bounds, { padding: [20, 20] });
+    map.fitBounds(bounds, { 
+      padding: [50, 50],  // Increased padding to ensure popups are visible
+      maxZoom: 7  // Limit the maximum zoom level when fitting bounds
+    });
   }, [map, sites, agencyLocation]);
   
   return null;
@@ -64,15 +67,16 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
     <div className="w-full">
       <div className="rounded-2xl overflow-hidden shadow-2xl bg-white">
         <MapContainer
-          center={[35.0, 9.0]}
-          zoom={6}
+          center={[34.5, 9.5]}
+          zoom={7}
           style={{ height: '600px', width: '100%' }}
           className="z-10"
-          minZoom={5}
+          minZoom={4}
           maxBounds={[
-            [29.5, 7.0],
-            [38.0, 12.0]
+            [20.0, -10.0],  // Southwest corner - Much wider bounds
+            [45.0, 30.0]    // Northeast corner - Much wider bounds
           ]}
+          maxBoundsViscosity={0.3}  // Makes the bounds more flexible
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

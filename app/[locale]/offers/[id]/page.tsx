@@ -117,9 +117,11 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                               </span>
                               {tOffers('details.completeDetails')}
                             </h3>
-                            <p className="text-gray-700 leading-relaxed text-base line-clamp-4">
-                              {localizedOffer.bigDescription || offer.bigDescription || tOffers('details.noDescription')}
-                            </p>
+                            <div className="min-h-[6rem]">
+                              <p className="text-gray-700 leading-relaxed text-base">
+                                {localizedOffer.bigDescription || offer.bigDescription || tOffers('details.noDescription')}
+                              </p>
+                            </div>
                           </div>
                         </div>
 

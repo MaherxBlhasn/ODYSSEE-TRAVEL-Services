@@ -13,8 +13,8 @@ export default function LoadingOverlay({ isVisible, message }: LoadingOverlayPro
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl p-8 shadow-2xl border border-orange-200 text-center max-w-sm mx-4">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white">
+      <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-orange-200 text-center max-w-sm mx-4">
         {/* Animated Loading Spinner */}
         <div className="flex justify-center mb-6">
           <div className="relative">

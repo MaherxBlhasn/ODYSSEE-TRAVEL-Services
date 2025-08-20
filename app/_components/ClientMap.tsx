@@ -133,11 +133,6 @@ interface TunisiaMapClientProps {
 export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLocation }: TunisiaMapClientProps) {
   const currentLang = locale as 'en' | 'fr';
 
-  // Test route between Carthage and Dougga
-  const testRoute = [
-    [36.8528, 10.3294], // Carthage coordinates
-    [36.4222, 9.2194]   // Dougga coordinates
-  ] as [number, number][];
 
   return (
     <div className="w-full">
@@ -189,11 +184,6 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
                       }`}>
                       {site.type === 'unesco' ? '🏆 ' + tMap('unesco') : '📿 ' + tMap('historic')}
                     </span>
-                    {(site.id === 'carthage' || site.id === 'dougga') && (
-                      <span className="text-xs text-blue-600 font-medium">
-                        🚗 Route de test
-                      </span>
-                    )}
                   </div>
                 </div>
               </Popup>

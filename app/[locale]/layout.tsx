@@ -20,7 +20,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Odyssee Travel Services",
   description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
-};
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" }
+    ],
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "manifest",
+        url: "/site.webmanifest",
+      },
+    ],
+  },
+}
 
 const locales = ['en', 'fr'];
 
@@ -45,9 +59,8 @@ export default async function LocaleLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
-      </head>
+      </head>     
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-beige overflow-x-hidden`}
         style={{

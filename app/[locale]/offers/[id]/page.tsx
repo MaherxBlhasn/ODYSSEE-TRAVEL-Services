@@ -163,7 +163,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                           </div>
                         </div>
 
-                        <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4 rounded-2xl border border-blue-200 shadow-lg transform hover:scale-105 transition-all duration-300">
+                        {/* <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4 rounded-2xl border border-blue-200 shadow-lg transform hover:scale-105 transition-all duration-300">
                           <div className="flex items-center">
                             <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-3 rounded-xl mr-3 shadow-md">
                               <span className="text-2xl">📅</span>
@@ -173,7 +173,7 @@ export default async function OfferDetailsPage({ params }: OfferDetailsPageProps
                               <span className="font-bold text-gray-900 text-lg">{offer.duration} {tOffers('details.days')}</span>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* Enhanced Availability Status */}

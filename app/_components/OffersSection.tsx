@@ -103,7 +103,7 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
                   </div>
 
                   <div className="flex flex-wrap gap-3 mb-4">
-                    {offer.duration && (
+                    {/* {offer.duration && (
                       <div className="flex items-center bg-orange-50 px-3 py-1 rounded-full border border-orange-200">
                         <span className="text-orange-600 mr-1">🕒</span>
                         <span className="text-sm font-semibold" style={{ color: '#F28C28' }}>
@@ -113,7 +113,7 @@ export default async function OffersSection({ params }: { params: Promise<{ loca
                           }
                         </span>
                       </div>
-                    )}
+                    )} */}
                     {offer.destination && (
                       <div className="flex items-center bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
                         <span className="text-blue-600 mr-1">📍</span>

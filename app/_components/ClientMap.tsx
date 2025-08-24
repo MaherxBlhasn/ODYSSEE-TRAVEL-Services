@@ -1,9 +1,10 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 import { Icon, LatLngBounds, divIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 // Fix for default markers in React-Leaflet
 if (typeof window !== 'undefined') {
@@ -15,94 +16,157 @@ if (typeof window !== 'undefined') {
   });
 }
 
-// Enhanced archaeological site icon with UNESCO styling
-const archaeologicalIcon = divIcon({
-  html: `
-    <div style="
-      background: linear-gradient(135deg, #dc2626, #b91c1c);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    ">
-      <div style="
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-      ">🏛️</div>
-    </div>
-  `,
-  className: 'custom-archaeological-icon',
-  iconSize: [32, 32],
-  iconAnchor: [16, 16],
-  popupAnchor: [0, -16]
-});
+function createArchaeologicalIcon(name: string, type: 'unesco' | 'historical') {
+  const iconColor = type === 'unesco'
+    ? 'linear-gradient(135deg, #dc2626, #b91c1c)'
+    : 'linear-gradient(135deg, #d97706, #b45309)';
+  const iconSize = type === 'unesco' ? 32 : 30;
+  const emoji = type === 'unesco' ? '🏛️' : '⚱️';
+  const fontSize = type === 'unesco' ? 16 : 14;
+  const borderWidth = type === 'unesco' ? 3 : 2;
+  const shadow = type === 'unesco' ? '0 4px 8px rgba(0,0,0,0.3)' : '0 3px 6px rgba(0,0,0,0.3)';
 
-// Enhanced historical site icon
-const historicalIcon = divIcon({
-  html: `
-    <div style="
-      background: linear-gradient(135deg, #d97706, #b45309);
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 2px solid white;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    ">
+  return divIcon({
+    html: `
+      <style>
+        .site-label {
+          position: absolute;
+          top: ${iconSize + 8}px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.8));
+          color: white;
+          padding: 4px 8px;
+          border-radius: 8px;
+          font-size: 10px;
+          font-weight: 600;
+          white-space: nowrap;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+          border: 1px solid rgba(255,255,255,0.2);
+          backdrop-filter: blur(8px);
+          max-width: 120px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 1.2;
+        }
+        .site-label::before {
+          content: '';
+          position: absolute;
+          top: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-bottom: 4px solid rgba(0,0,0,0.9);
+        }
+      </style>
       <div style="
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-      ">⚱️</div>
-    </div>
-  `,
-  className: 'custom-historical-icon',
-  iconSize: [30, 30],
-  iconAnchor: [15, 15],
-  popupAnchor: [0, -15]
-});
+        position: relative;
+        width: ${iconSize}px;
+        height: ${iconSize}px;
+      ">
+        <div style="
+          background: ${iconColor};
+          width: ${iconSize}px;
+          height: ${iconSize}px;
+          border-radius: 50%;
+          border: ${borderWidth}px solid white;
+          box-shadow: ${shadow};
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        ">
+          <div style="
+            color: white;
+            font-size: ${fontSize}px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+          ">${emoji}</div>
+        </div>
+        <div class="site-label">${name}</div>
+      </div>
+    `,
+    className: '',
+    iconSize: [iconSize, iconSize + 35],
+    iconAnchor: [iconSize / 2, iconSize / 2],
+    popupAnchor: [0, -iconSize / 2]
+  });
+}
 
-// Enhanced agency icon with modern styling
-const agencyIcon = divIcon({
-  html: `
-    <div style="
-      background: linear-gradient(135deg, #059669, #047857);
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      border: 3px solid white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      transform: rotate(45deg);
-    ">
+function createAgencyIcon(name: string) {
+  return divIcon({
+    html: `
+      <style>
+        .agency-label {
+          position: absolute;
+          top: 44px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, rgba(5,150,105,0.95), rgba(4,120,87,0.95));
+          color: white;
+          padding: 5px 10px;
+          border-radius: 10px;
+          font-size: 11px;
+          font-weight: 700;
+          white-space: nowrap;
+          box-shadow: 0 3px 8px rgba(5,150,105,0.4);
+          border: 1px solid rgba(255,255,255,0.3);
+          backdrop-filter: blur(10px);
+          max-width: 140px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 1.2;
+          letter-spacing: 0.5px;
+        }
+        .agency-label::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid rgba(5,150,105,0.95);
+        }
+      </style>
       <div style="
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        transform: rotate(-45deg);
-      ">🏢</div>
-    </div>
-  `,
-  className: 'custom-agency-icon',
-  iconSize: [36, 36],
-  iconAnchor: [18, 18],
-  popupAnchor: [0, -18]
-});
+        position: relative;
+        width: 36px;
+        height: 36px;
+      ">
+        <div style="
+          background: linear-gradient(135deg, #059669, #047857);
+          width: 36px;
+          height: 36px;
+          border-radius: 8px;
+          border: 3px solid white;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: rotate(45deg);
+        ">
+          <div style="
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transform: rotate(-45deg);
+          ">🏢</div>
+        </div>
+        <div class="agency-label">${name}</div>
+      </div>
+    `,
+    className: '',
+    iconSize: [36, 36 + 40],
+    iconAnchor: [18, 18],
+    popupAnchor: [0, -18]
+  });
+}
 
 function FitBounds({ sites, agencyLocation }: { sites: any[], agencyLocation: any }) {
   const map = useMap();
@@ -123,6 +187,30 @@ function FitBounds({ sites, agencyLocation }: { sites: any[], agencyLocation: an
   return null;
 }
 
+function MapController({ isRevealed }: { isRevealed: boolean }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (isRevealed) {
+      map.scrollWheelZoom.enable();
+      map.dragging.enable();
+      map.touchZoom.enable();
+      map.doubleClickZoom.enable();
+      map.boxZoom.enable();
+      map.keyboard.enable();
+    } else {
+      map.scrollWheelZoom.disable();
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.boxZoom.disable();
+      map.keyboard.disable();
+    }
+  }, [map, isRevealed]);
+
+  return null;
+}
+
 interface TunisiaMapClientProps {
   tMap: any;
   locale: string;
@@ -132,13 +220,16 @@ interface TunisiaMapClientProps {
 
 export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLocation }: TunisiaMapClientProps) {
   const currentLang = locale as 'en' | 'fr';
+  const [isRevealed, setIsRevealed] = useState(false);
 
+  const handleToggleReveal = () => {
+    setIsRevealed(prev => !prev);
+  };
 
   return (
-    <div className="w-full">
-      <div className="rounded-2xl overflow-hidden shadow-2xl bg-white">
+    <div className="w-full relative">
+      <div className="rounded-2xl overflow-hidden shadow-2xl bg-white relative">
         <MapContainer
-          scrollWheelZoom={false}
           center={[34.5, 9.5]}
           zoom={7}
           style={{ height: '600px', width: '100%' }}
@@ -156,13 +247,14 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
           />
 
           <FitBounds sites={archaeologicalSites} agencyLocation={agencyLocation} />
-
+          <MapController isRevealed={isRevealed} />
 
           {archaeologicalSites.map((site) => (
             <Marker
               key={site.id}
               position={site.coordinates as [number, number]}
-              icon={site.type === 'unesco' ? archaeologicalIcon : historicalIcon}
+              icon={createArchaeologicalIcon(site.name[currentLang], site.type)}
+              interactive={isRevealed}
             >
               <Popup maxWidth={320} className="custom-popup">
                 <div className="p-3">
@@ -192,7 +284,8 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
 
           <Marker
             position={agencyLocation.coordinates as [number, number]}
-            icon={agencyIcon}
+            icon={createAgencyIcon(agencyLocation.name[currentLang])}
+            interactive={isRevealed}
           >
             <Popup maxWidth={320}>
               <div className="p-3">
@@ -219,8 +312,80 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
             </Popup>
           </Marker>
         </MapContainer>
-      </div>
 
+        {/* Show/Hide Toggle Button */}
+        <motion.button
+          onClick={handleToggleReveal}
+          className={`absolute top-4 right-4 z-30 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg transition-all duration-300 backdrop-blur-sm border ${
+            isRevealed 
+              ? 'bg-white/90 text-gray-700 border-gray-200 hover:bg-white hover:shadow-xl' 
+              : 'bg-black/80 text-white border-white/20 hover:bg-black/90 hover:shadow-2xl'
+          }`}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={isRevealed ? 'Hide map' : 'Show map'}
+        >
+          <motion.div
+            animate={{ rotate: isRevealed ? 0 : 180 }}
+            transition={{ duration: 0.3 }}
+          >
+            {isRevealed ? (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            ) : (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            )}
+          </motion.div>
+          <span className="text-sm font-medium">
+            {isRevealed ? 'Hide' : 'Show'}
+          </span>
+        </motion.button>
+
+        {/* Overlay for hiding map */}
+        <motion.div
+          className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-black-600/40 via-gray-900/40 to-indigo-900/40 backdrop-blur-md z-20 flex items-center justify-center"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isRevealed ? 0 : 1 }}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          style={{ pointerEvents: isRevealed ? 'none' : 'auto' }}
+        >
+          <motion.div
+            className="text-center text-white"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: isRevealed ? 0 : 1, scale: isRevealed ? 0.8 : 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <motion.div
+              className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20"
+              animate={{ 
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  '0 0 20px rgba(255,255,255,0.2)',
+                  '0 0 30px rgba(255,255,255,0.4)',
+                  '0 0 20px rgba(255,255,255,0.2)'
+                ]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </motion.div>
+            <h3 className="text-xl font-semibold mb-2">Tunisia Archaeological Sites</h3>
+            <p className="text-white/80 text-sm">Click "Show" to explore the interactive map</p>
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }

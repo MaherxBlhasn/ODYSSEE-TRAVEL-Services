@@ -18,13 +18,13 @@ export default async function ContactSection() {
     }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 fade-in" suppressHydrationWarning>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ 
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{
             color: '#FCE6CE',
             textShadow: '0 2px 4px rgba(0,0,0,0.3)'
           }}>{tContact('title')}</h2>
-          <p className="text-xl max-w-2xl mx-auto" style={{ 
-            color: '#FCE6CE', 
-            opacity: 0.8 
+          <p className="text-xl max-w-2xl mx-auto" style={{
+            color: '#FCE6CE',
+            opacity: 0.8
           }}>{tContact('subtitle')}</p>
         </div>
 
@@ -56,7 +56,9 @@ export default async function ContactSection() {
                       {tContact('info.address.title')}
                     </h4>
                     <p className="text-sm sm:text-base break-words" style={{ color: '#FCE6CE', opacity: 0.8 }}>
-                      {tContact('info.address.value')}
+                      {tContact.raw('info.address.value').map((addr: string, index: number) => (
+                        <p key={index}>{addr}</p>
+                      ))}
                     </p>
                   </div>
                 </div>

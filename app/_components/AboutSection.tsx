@@ -2,6 +2,11 @@ import { getTranslations } from 'next-intl/server';
 
 export default async function AboutSection() {
   const tAbout = await getTranslations('about');
+  // Dynamically calculate years of experience
+  const foundingYear = 1999;
+  const currentYear = new Date().getFullYear();
+  const yearsExperience = currentYear - foundingYear;
+
 
   return (
     <section id="about" className="py-20 px-6 relative" style={{
@@ -22,7 +27,7 @@ export default async function AboutSection() {
             color: '#001F3F', 
             opacity: 0.85, 
             lineHeight: 1.6
-          }}>{tAbout('description1')}</p>
+          }}>{tAbout('description1', { years: yearsExperience })}</p>
           <p className="text-lg" style={{
             color: '#001F3F', 
             opacity: 0.85, 
@@ -41,7 +46,7 @@ export default async function AboutSection() {
             <div className="text-xl" style={{color: '#001F3F', fontWeight: 600}}>{tAbout('stats.travelers')}</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold mb-2" style={{ color: '#F28C28' }}>15+</div>
+            <div className="text-5xl font-bold mb-2" style={{ color: '#F28C28' }}>{yearsExperience}+</div>
             <div className="text-xl" style={{color: '#001F3F', fontWeight: 600}}>{tAbout('stats.experience')}</div>
           </div>
         </div>

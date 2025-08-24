@@ -124,8 +124,8 @@
   },
   "about": {
     "title": "À Propos d'Odyssee Travel Services",
-    "description1": "Avec plus de 15 ans d'expérience dans l'industrie du voyage, Odyssee Travel Services crée des voyages extraordinaires pour les âmes aventureuses. Nous croyons que chaque voyage devrait être plus qu'une simple vacation—il devrait être une expérience transformatrice.",
-    "description2": "Notre équipe d'experts passionnés du voyage travaille sans relâche pour organiser des expériences uniques qui vous connectent avec les destinations, cultures et peuples les plus incroyables du monde.",
+    "description1": "Avec plus de {years} ans d’expérience dans le domaine du voyage, Odyssee Travel est une agence créée en 1999 dont le siège se situe au boulevard Ennakhil, Khezama Est, Sousse. Nous vous offrons un vaste choix : vols, hébergements ou voyages à la carte, en Tunisie comme à travers le monde.",
+    "description2": "Notre équipe de conseillers spécialisés est toujours à votre disposition pour transformer chacune de vos envies en une expérience unique, authentique et mémorable.",
     "stats": {
       "destinations": "Destinations",
       "travelers": "Voyageurs Satisfaits",
@@ -163,15 +163,15 @@
       "title": "Informations de Contact",
       "address": {
         "title": "Adresse",
-        "value": "El Menzah 5 , Ariana , Tunisie"
+        "value": ["Immeuble Mlika, Bd Ennakhil Khezema Est 4051, Sousse (siége)", "11 Avenue de la démocratie, Ariana, Tunisia, 1004"]
       },
       "phone": {
         "title": "Téléphone",
-        "value": ""
+        "value": "+216 71 750 475"
       },
       "email": {
         "title": "Email",
-        "value": "odyssee.travel.service@gmail.com"
+        "value": "odyssee.travel@orange.tn"
       },
       "followUs": "Suivez-Nous"
     }

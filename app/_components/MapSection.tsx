@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import '../styles/map.css';
 import { agencyLocation, archaeologicalSites } from '../lib/mapInfos';
-// Import the ClientMap component
+
 const TunisiaMapClient = dynamic(
   () => import('./ClientMap').then((mod) => mod.TunisiaMapClient),
-  { 
+  {
     ssr: false,
     loading: () => (
       <div className="w-full h-[600px] bg-gray-100 rounded-2xl flex items-center justify-center">
@@ -17,7 +17,6 @@ const TunisiaMapClient = dynamic(
   }
 );
 
-
 interface TunisiaMapProps {
   tMap: any;
   locale: string;
@@ -26,11 +25,10 @@ interface TunisiaMapProps {
 function TunisiaMap({ tMap, locale }: TunisiaMapProps) {
   return (
     <div className="w-full">
-      {/* Map Container */}
       <div className="rounded-2xl overflow-hidden shadow-2xl bg-white">
-        <TunisiaMapClient 
-          tMap={tMap} 
-          locale={locale} 
+        <TunisiaMapClient
+          tMap={tMap}
+          locale={locale}
           archaeologicalSites={archaeologicalSites}
           agencyLocation={agencyLocation}
         />
@@ -69,6 +67,29 @@ export default function MapSection() {
         .leaflet-popup-tip {
           box-shadow: none !important;
         }
+        .site-label {
+          position: absolute;
+          bottom: -28px;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #1F2937;
+          background: rgba(255, 255, 255, 0.85);
+          padding: 4px 8px;
+          border-radius: 6px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+          transition: opacity 0.3s ease-in-out;
+        }
+        @media (max-width: 768px) {
+          .site-label {
+            font-size: 12px;
+            bottom: -24px;
+            padding: 3px 6px;
+          }
+        }
         @media (max-width: 640px) {
           .leaflet-popup-content {
             min-width: 240px;
@@ -76,13 +97,13 @@ export default function MapSection() {
         }
       `}</style>
       <div className="container mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ 
+        <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{
           color: '#FCE6CE',
           textShadow: '0 2px 4px rgba(0,0,0,0.3)'
         }}>{tMap('title')}</h2>
-        <p className="text-xl mb-12 max-w-3xl mx-auto" style={{ 
-          color: '#FCE6CE', 
-          opacity: 0.8 
+        <p className="text-xl mb-12 max-w-3xl mx-auto" style={{
+          color: '#FCE6CE',
+          opacity: 0.8
         }}>{tMap('subtitle')}</p>
 
         <div className="rounded-2xl p-8 backdrop-blur-sm border border-orange/20" style={{

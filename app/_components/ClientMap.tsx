@@ -31,7 +31,7 @@ function createArchaeologicalIcon(name: string, type: 'unesco' | 'historical') {
       <style>
         .site-label {
           position: absolute;
-          top: ${iconSize + 8}px;
+          top: ${iconSize}px;
           left: 50%;
           transform: translateX(-50%);
           background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.8));

@@ -1,138 +1,192 @@
 import { getTranslations } from 'next-intl/server';
 import ContactForm from './ContactForm';
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  message: string;
+interface ContactItemProps {
+  icon: React.ReactNode;
+  title: string;
+  children: React.ReactNode;
 }
+
+const ContactItem = ({ icon, title, children }: ContactItemProps) => (
+  <div className="flex items-start space-x-3 sm:space-x-4 group">
+    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3" style={{
+      backgroundColor: '#F28C28',
+      boxShadow: '0 4px 12px rgba(242, 140, 40, 0.3)'
+    }}>
+      {icon}
+    </div>
+    <div className="flex-1 min-w-0">
+      <h4 className="text-base sm:text-lg font-semibold break-words mb-1 transition-colors duration-300 group-hover:text-orange-200" style={{ color: '#FCE6CE' }}>
+        {title}
+      </h4>
+      <div className="text-sm sm:text-base transition-colors duration-300" style={{ color: '#FCE6CE', opacity: 0.8 }}>
+        {children}
+      </div>
+    </div>
+  </div>
+);
+
+const LocationIcon = () => (
+  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+  </svg>
+);
+
+const PhoneIcon = () => (
+  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+  </svg>
+);
+
+const EmailIcon = () => (
+  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+  </svg>
+);
 
 export default async function ContactSection() {
   const tContact = await getTranslations('contact');
 
+  // Get addresses and phones as arrays
+  const addresses = tContact.raw('info.address.value');
+  const phones = tContact.raw('info.phone.value');
+
   return (
-    <section id="contact" className="section-padding" style={{
+    <section id="contact" className="section-padding relative overflow-hidden" style={{
       background: 'linear-gradient(135deg, #001F3F 0%, #003366 100%)'
     }}>
-      <div className="container mx-auto px-6">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-orange-300 blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-48 h-48 rounded-full bg-blue-300 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 rounded-full bg-yellow-300 blur-2xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative">
         <div className="text-center mb-16 fade-in" suppressHydrationWarning>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-200 via-yellow-100 to-orange-300 bg-clip-text text-transparent drop-shadow-lg">
+            {tContact('title')}
+          </h2>
+          <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{
             color: '#FCE6CE',
-            textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-          }}>{tContact('title')}</h2>
-          <p className="text-xl max-w-2xl mx-auto" style={{
-            color: '#FCE6CE',
-            opacity: 0.8
-          }}>{tContact('subtitle')}</p>
+            opacity: 0.9
+          }}>
+            {tContact('subtitle')}
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div className="fade-in" suppressHydrationWarning>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="fade-in order-2 lg:order-1" suppressHydrationWarning>
             <ContactForm />
           </div>
 
-          <div className="fade-in" suppressHydrationWarning>
-            <div className="rounded-2xl p-4 sm:p-6 lg:p-8 border border-orange/20" style={{
-              backgroundColor: 'rgba(252, 230, 206, 0.1)'
+          <div className="fade-in order-1 lg:order-2" suppressHydrationWarning>
+            <div className="rounded-2xl p-6 sm:p-8 border-2 border-orange/20 backdrop-blur-sm relative overflow-hidden transition-all duration-500 hover:border-orange/30 hover:shadow-2xl" style={{
+              backgroundColor: 'rgba(252, 230, 206, 0.08)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
             }}>
-              <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 break-words" style={{ color: '#FCE6CE' }}>
-                {tContact('info.title')}
-              </h3>
+              {/* Subtle gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange/5 to-transparent rounded-2xl"></div>
 
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-base sm:text-lg font-semibold break-words" style={{ color: '#FCE6CE' }}>
-                      {tContact('info.address.title')}
-                    </h4>
-                    <p className="text-sm sm:text-base break-words" style={{ color: '#FCE6CE', opacity: 0.8 }}>
-                      {tContact.raw('info.address.value').map((addr: string, index: number) => (
-                        <p key={index}>{addr}</p>
-                      ))}
-                    </p>
-                  </div>
-                </div>
+              <div className="relative z-10">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center lg:text-left bg-gradient-to-r from-orange-200 via-yellow-100 to-orange-300 bg-clip-text text-transparent drop-shadow-sm">
+                  {tContact('info.title')}
+                </h3>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-base sm:text-lg font-semibold break-words" style={{ color: '#FCE6CE' }}>
-                      {tContact('info.phone.title')}
-                    </h4>
-                    <p className="text-sm sm:text-base break-words" style={{ color: '#FCE6CE', opacity: 0.8 }}>
-                      {tContact('info.phone.value')}
-                    </p>
-                  </div>
-                </div>
+                <div className="space-y-6 sm:space-y-8">
+                  {/* Address Section */}
+                  <ContactItem
+                    icon={<LocationIcon />}
+                    title={tContact('info.address.title')}
+                  >
+                    {Array.isArray(addresses) ? (
+                      <div className="space-y-1">
+                        {addresses.map((addr: string, index: number) => (
+                          <p key={index} className="break-words leading-relaxed">
+                            {addr}
+                          </p>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="break-words leading-relaxed">{addresses}</p>
+                    )}
+                  </ContactItem>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-base sm:text-lg font-semibold break-words" style={{ color: '#FCE6CE' }}>
-                      {tContact('info.email.title')}
-                    </h4>
-                    <p className="text-sm sm:text-base break-all" style={{ color: '#FCE6CE', opacity: 0.8 }}>
+                  {/* Phone Section */}
+                  <ContactItem
+                    icon={<PhoneIcon />}
+                    title={tContact('info.phone.title')}
+                  >
+                    {Array.isArray(phones) ? (
+                      <div className="space-y-1">
+                        {phones.map((phone: string, index: number) => (
+                          <a
+                            key={index}
+                            href={`tel:${phone.replace(/\s+/g, '')}`}
+                            className="block break-words leading-relaxed hover:text-orange-200 transition-colors duration-300 cursor-pointer"
+                          >
+                            {phone}
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <a
+                        href={`tel:${phones.replace(/\s+/g, '')}`}
+                        className="block break-words leading-relaxed hover:text-orange-200 transition-colors duration-300 cursor-pointer"
+                      >
+                        {phones}
+                      </a>
+                    )}
+                  </ContactItem>
+
+                  {/* Email Section */}
+                  <ContactItem
+                    icon={<EmailIcon />}
+                    title={tContact('info.email.title')}
+                  >
+                    <a
+                      href={`mailto:${tContact('info.email.value')}`}
+                      className="break-all leading-relaxed hover:text-orange-200 transition-colors duration-300 cursor-pointer"
+                    >
                       {tContact('info.email.value')}
-                    </p>
-                  </div>
+                    </a>
+                  </ContactItem>
                 </div>
-              </div>
 
-              <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-orange/20">
-                <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 break-words" style={{ color: '#FCE6CE' }}>
-                  {tContact('info.followUs')}
-                </h4>
-                <div className="flex flex-wrap gap-3 sm:gap-4">
-                  <a href="#" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-orange-300" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                    </svg>
-                  </a>
-                  <a href="#" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-orange-300" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                    </svg>
-                  </a>
-                  <a href="#" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-orange-300" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.764-1.378l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z" />
-                    </svg>
-                  </a>
-                  <a href="#" className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 flex-shrink-0 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-orange-300" style={{
-                    backgroundColor: '#F28C28'
-                  }}>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12.5.75C6.146.75 1 5.896 1 12.25c0 5.089 3.292 9.387 7.863 10.956.575-.105.79-.251.79-.546 0-.273-.014-1.178-.014-2.142-2.889.532-3.636-.704-3.866-1.35-.13-.331-.69-1.352-1.18-1.625-.402-.216-.977-.748-.014-.762.906-.014 1.553.834 1.769 1.179 1.035 1.74 2.688 1.25 3.349.948.1-.747.402-1.25.733-1.538-2.559-.287-5.232-1.279-5.232-5.678 0-1.25.445-2.285 1.178-3.09-.115-.288-.517-1.467.115-3.048 0 0 .963-.302 3.163 1.179.92-.259 1.897-.388 2.875-.388.977 0 1.955.129 2.875.388 2.2-1.495 3.162-1.179 3.162-1.179.633 1.581.23 2.76.115 3.048.733.805 1.179 1.825 1.179 3.09 0 4.413-2.688 5.391-5.247 5.678.417.36.776 1.05.776 2.128 0 1.538-.014 2.774-.014 3.162 0 .302.216.655.79.546C20.709 21.637 24 17.324 24 12.25 24 5.896 18.854.75 12.5.75z" />
-                    </svg>
-                  </a>
+                {/* Social Media Section */}
+                <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-orange/20">
+                  <div className="flex items-center gap-4 flex-wrap justify-center lg:justify-start">
+                    <h4 className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-orange-200 via-yellow-100 to-orange-300 bg-clip-text text-transparent drop-shadow-sm">
+                      {tContact('info.followUs')}
+                    </h4>
+
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100063762986406"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-500 flex-shrink-0 hover:scale-110 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-300 overflow-hidden"
+                      style={{
+                        background: 'linear-gradient(145deg, #1877F2, #42A5F5, #1565C0)',
+                        boxShadow: '0 8px 32px rgba(24, 119, 242, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                      }}
+                    >
+                      {/* Animated shine effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-30 transition-opacity duration-700 transform -skew-x-12 group-hover:animate-pulse"></div>
+
+                      {/* Facebook Icon */}
+                      <svg
+                        className="w-6 h-6 sm:w-7 sm:h-7 text-white relative z-10 drop-shadow-sm group-hover:drop-shadow-lg transition-all duration-300 group-hover:scale-110"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                      </svg>
+
+                      {/* Glow effect */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-40 blur-xl transition-all duration-500"></div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

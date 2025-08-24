@@ -70,14 +70,29 @@ const archaeologicalSites = [
         type: 'historical'
     }
 ];
-
-const agencyLocation = {
-    name: { en: 'Odyssee travel agency', fr: 'Agence de Voyage Odyssee' },
-    coordinates: [36.847127, 10.175902], // Tunis center
+const headOfficeLocation = {
+    name: {
+        en: 'Our Head Office',
+        fr: 'Notre Siège Social'
+    },
+    coordinates: [35.851470916286274, 10.61534314999563],
     description: {
-        en: 'Your trusted partner for exploring Tunisia\'s archaeological treasures. Contact us for personalized tours!',
-        fr: 'Votre partenaire de confiance pour explorer les trésors archéologiques de la Tunisie. Contactez-nous pour des circuits personnalisés !'
+        en: 'Our main office oversees all operations and coordinates our services across Tunisia. Your trusted partner for discovering Tunisia\'s archaeological treasures.',
+        fr: 'Notre siège principal supervise toutes les opérations et coordonne nos services à travers la Tunisie. Votre partenaire de confiance pour découvrir les trésors archéologiques du pays.'
     }
 };
 
-export { archaeologicalSites, agencyLocation };
+const agencyLocation = {
+    name: {
+        en: 'Our Travel Branch',
+        fr: 'Notre Agence de Voyage'
+    },
+    coordinates: [36.847127, 10.175902], // Tunis center
+    description: {
+        en: 'Our branch offers personalized tours and affordable trips for everyone. Discover Tunisia\'s archaeological treasures with our expert guidance!',
+        fr: 'Notre agence propose des circuits personnalisés et des voyages à prix accessibles pour tous. Découvrez les trésors archéologiques de la Tunisie avec nos experts !'
+    }
+};
+
+
+export { archaeologicalSites, agencyLocation, headOfficeLocation };

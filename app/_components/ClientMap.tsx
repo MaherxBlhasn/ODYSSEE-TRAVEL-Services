@@ -95,32 +95,55 @@ function createArchaeologicalIcon(name: string, type: 'unesco' | 'historical') {
   });
 }
 
-function createAgencyIcon(name: string) {
+function createAgencyIcon(name: string, type: 'agency' | 'head-office' = 'agency') {
+  // Both agencies same size, but different colors and styling
+  const isHeadOffice = type === 'head-office';
+  const iconSize = 36; // Same size for both
+  const fontSize = 18; // Same font size for both
+  const borderWidth = 3; // Same border width
+
+  const colors = isHeadOffice
+    ? {
+      gradient: 'linear-gradient(135deg, #dc2626, #b91c1c)', // Premium red gradient
+      bgColor: 'rgba(220,38,38,0.95)',
+      shadowColor: 'rgba(220,38,38,0.5)',
+      labelClass: 'head-office-label',
+      shadow: '0 4px 12px rgba(0,0,0,0.4)'
+    }
+    : {
+      gradient: 'linear-gradient(135deg, #059669, #047857)', // Green gradient  
+      bgColor: 'rgba(5,150,105,0.95)',
+      shadowColor: 'rgba(5,150,105,0.4)',
+      labelClass: 'agency-label',
+      shadow: '0 4px 12px rgba(0,0,0,0.4)'
+    };
+
   return divIcon({
     html: `
       <style>
-        .agency-label {
+        .${colors.labelClass} {
           position: absolute;
-          top: 44px;
+          top: ${iconSize + 8}px;
           left: 50%;
           transform: translateX(-50%);
-          background: linear-gradient(135deg, rgba(5,150,105,0.95), rgba(4,120,87,0.95));
+          background: linear-gradient(135deg, ${colors.bgColor}, rgba(0,0,0,0.9));
           color: white;
           padding: 5px 10px;
           border-radius: 10px;
           font-size: 11px;
           font-weight: 700;
           white-space: nowrap;
-          box-shadow: 0 3px 8px rgba(5,150,105,0.4);
-          border: 1px solid rgba(255,255,255,0.3);
-          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 12px ${colors.shadowColor};
+          border: 1px solid rgba(255,255,255,0.4);
+          backdrop-filter: blur(12px);
           max-width: 140px;
           overflow: hidden;
           text-overflow: ellipsis;
           line-height: 1.2;
           letter-spacing: 0.5px;
+          }
         }
-        .agency-label::before {
+        .${colors.labelClass}::before {
           content: '';
           position: absolute;
           top: -5px;
@@ -130,21 +153,22 @@ function createAgencyIcon(name: string) {
           height: 0;
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
-          border-bottom: 5px solid rgba(5,150,105,0.95);
+          border-bottom: 5px solid ${colors.bgColor};
         }
       </style>
       <div style="
         position: relative;
-        width: 36px;
-        height: 36px;
+        width: ${iconSize}px;
+        height: ${iconSize}px;
+        z-index: ${isHeadOffice ? '1000' : '100'};
       ">
         <div style="
-          background: linear-gradient(135deg, #059669, #047857);
-          width: 36px;
-          height: 36px;
+          background: ${colors.gradient};
+          width: ${iconSize}px;
+          height: ${iconSize}px;
           border-radius: 8px;
-          border: 3px solid white;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+          border: ${borderWidth}px solid ${isHeadOffice ? '#fbbf24' : 'white'};
+          box-shadow: ${colors.shadow};
           display: flex;
           align-items: center;
           justify-content: center;
@@ -152,29 +176,30 @@ function createAgencyIcon(name: string) {
         ">
           <div style="
             color: white;
-            font-size: 18px;
+            font-size: ${fontSize}px;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
             transform: rotate(-45deg);
           ">🏢</div>
         </div>
-        <div class="agency-label">${name}</div>
+        <div class="${colors.labelClass}">${name}</div>
       </div>
     `,
     className: '',
-    iconSize: [36, 36 + 40],
-    iconAnchor: [18, 18],
-    popupAnchor: [0, -18]
+    iconSize: [iconSize, iconSize + 40],
+    iconAnchor: [iconSize / 2, iconSize / 2],
+    popupAnchor: [0, -iconSize / 2]
   });
 }
 
-function FitBounds({ sites, agencyLocation }: { sites: any[], agencyLocation: any }) {
+function FitBounds({ sites, agencyLocation, headOfficeLocation }: { sites: any[], agencyLocation: any, headOfficeLocation: any }) {
   const map = useMap();
 
   useEffect(() => {
     const allCoordinates = [
       ...sites.map(site => site.coordinates),
-      agencyLocation.coordinates
+      agencyLocation.coordinates,
+      headOfficeLocation.coordinates
     ];
 
     const bounds = new LatLngBounds(allCoordinates as [number, number][]);
@@ -182,7 +207,7 @@ function FitBounds({ sites, agencyLocation }: { sites: any[], agencyLocation: an
       padding: [50, 50],
       maxZoom: 7
     });
-  }, [map, sites, agencyLocation]);
+  }, [map, sites, agencyLocation, headOfficeLocation]);
 
   return null;
 }
@@ -216,9 +241,10 @@ interface TunisiaMapClientProps {
   locale: string;
   archaeologicalSites: any[];
   agencyLocation: any;
+  headOfficeLocation: any;
 }
 
-export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLocation }: TunisiaMapClientProps) {
+export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLocation, headOfficeLocation }: TunisiaMapClientProps) {
   const currentLang = locale as 'en' | 'fr';
   const [isRevealed, setIsRevealed] = useState(false);
 
@@ -246,15 +272,84 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <FitBounds sites={archaeologicalSites} agencyLocation={agencyLocation} />
+          <FitBounds sites={archaeologicalSites} agencyLocation={agencyLocation} headOfficeLocation={headOfficeLocation} />
           <MapController isRevealed={isRevealed} />
 
+          {/* HEAD OFFICE - Most Important (Rendered First for Z-Index Priority) */}
+          <Marker
+            position={headOfficeLocation.coordinates as [number, number]}
+            icon={createAgencyIcon(headOfficeLocation.name[currentLang], 'head-office')}
+            interactive={true}
+            zIndexOffset={2000} // Highest priority
+          >
+            <Popup maxWidth={350} className="premium-popup">
+              <div className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                    <span className="text-xl">🏆</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-xl text-red-800 leading-tight">
+                      {headOfficeLocation.name[currentLang]}
+                    </h3>
+                    <span className="text-xs text-red-600 font-semibold uppercase tracking-wider">
+                      Main Headquarters
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                  {headOfficeLocation.description[currentLang]}
+                </p>
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <span className="inline-block px-4 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-red-100 to-orange-100 text-red-800 border-2 border-red-200">
+                    🏆 HEAD OFFICE
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium">
+                    📍 El Menzah 5
+                  </span>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+
+          {/* BRANCH AGENCY - Secondary */}
+          <Marker
+            position={agencyLocation.coordinates as [number, number]}
+            icon={createAgencyIcon(agencyLocation.name[currentLang], 'agency')}
+            interactive={true}
+            zIndexOffset={1000} // High priority but less than head office
+          >
+            <Popup maxWidth={320}>
+              <div className="p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xl">🏢</span>
+                  <h3 className="font-bold text-lg text-green-800">
+                    {agencyLocation.name[currentLang]}
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                  {agencyLocation.description[currentLang]}
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                    🏢 Branch Office
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    📍 Tunis Center
+                  </span>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+
+          {/* ARCHAEOLOGICAL SITES - Lower Priority */}
           {archaeologicalSites.map((site) => (
             <Marker
               key={site.id}
               position={site.coordinates as [number, number]}
               icon={createArchaeologicalIcon(site.name[currentLang], site.type)}
-              interactive={isRevealed}
+              interactive={true}
+              zIndexOffset={site.type === 'unesco' ? 100 : 50} // Lower than agencies
             >
               <Popup maxWidth={320} className="custom-popup">
                 <div className="p-3">
@@ -281,46 +376,15 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
               </Popup>
             </Marker>
           ))}
-
-          <Marker
-            position={agencyLocation.coordinates as [number, number]}
-            icon={createAgencyIcon(agencyLocation.name[currentLang])}
-            interactive={isRevealed}
-          >
-            <Popup maxWidth={320}>
-              <div className="p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">
-                    🏢
-                  </span>
-                  <h3 className="font-bold text-lg text-green-800">
-                    {agencyLocation.name[currentLang]}
-                  </h3>
-                </div>
-                <p className="text-sm text-gray-600 mb-3 leading-relaxed">
-                  {agencyLocation.description[currentLang]}
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
-                    🏢 {tMap('agency')}
-                  </span>
-                  <span className="text-xs text-gray-500">
-                    📍 El Menzah 5
-                  </span>
-                </div>
-              </div>
-            </Popup>
-          </Marker>
         </MapContainer>
 
         {/* Show/Hide Toggle Button */}
         <motion.button
           onClick={handleToggleReveal}
-          className={`absolute top-4 right-4 z-30 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg transition-all duration-300 backdrop-blur-sm border ${
-            isRevealed 
-              ? 'bg-white/90 text-gray-700 border-gray-200 hover:bg-white hover:shadow-xl' 
+          className={`absolute top-4 right-4 z-30 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg transition-all duration-300 backdrop-blur-sm border ${isRevealed
+              ? 'bg-white/90 text-gray-700 border-gray-200 hover:bg-white hover:shadow-xl'
               : 'bg-black/80 text-white border-white/20 hover:bg-black/90 hover:shadow-2xl'
-          }`}
+            }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           aria-label={isRevealed ? 'Hide map' : 'Show map'}
@@ -331,13 +395,13 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
           >
             {isRevealed ? (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
-                <line x1="1" y1="1" x2="23" y2="23"/>
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                <line x1="1" y1="1" x2="23" y2="23" />
               </svg>
             ) : (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                <circle cx="12" cy="12" r="3"/>
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
               </svg>
             )}
           </motion.div>
@@ -362,7 +426,7 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
           >
             <motion.div
               className="w-24 h-24 mx-auto mb-6 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20"
-              animate={{ 
+              animate={{
                 scale: [1, 1.05, 1],
                 boxShadow: [
                   '0 0 20px rgba(255,255,255,0.2)',
@@ -370,15 +434,15 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
                   '0 0 20px rgba(255,255,255,0.2)'
                 ]
               }}
-              transition={{ 
+              transition={{
                 duration: 2,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}
             >
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
             </motion.div>
             <h3 className="text-xl font-semibold mb-2">Tunisia Archaeological Sites</h3>

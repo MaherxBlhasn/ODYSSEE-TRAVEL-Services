@@ -282,14 +282,14 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
             interactive={true}
             zIndexOffset={2000} // Highest priority
           >
-            <Popup maxWidth={350} className="premium-popup">
-              <div className="p-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
-                    <span className="text-xl">🏆</span>
+            <Popup maxWidth={350} className="premium-popup responsive-popup">
+              <div className="popup-content p-2 sm:p-4">
+                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                    <span className="text-lg sm:text-xl">🏆</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-xl text-red-800 leading-tight">
+                    <h3 className="font-bold text-base sm:text-xl text-red-800 leading-tight">
                       {headOfficeLocation.name[currentLang]}
                     </h3>
                     <span className="text-xs text-red-600 font-semibold uppercase tracking-wider">
@@ -297,11 +297,11 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
                     </span>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                <p className="popup-description text-xs sm:text-sm text-gray-600 mb-2 sm:mb-4 leading-relaxed">
                   {headOfficeLocation.description[currentLang]}
                 </p>
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <span className="inline-block px-4 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-red-100 to-orange-100 text-red-800 border-2 border-red-200">
+                <div className="flex items-center justify-between flex-wrap gap-1 sm:gap-2">
+                  <span className="inline-block px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-bold bg-gradient-to-r from-red-100 to-orange-100 text-red-800 border-2 border-red-200">
                     🏆 HEAD OFFICE
                   </span>
                   <span className="text-xs text-gray-500 font-medium">
@@ -319,19 +319,19 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
             interactive={true}
             zIndexOffset={1000} // High priority but less than head office
           >
-            <Popup maxWidth={320}>
-              <div className="p-3">
+            <Popup maxWidth={320} className="responsive-popup">
+              <div className="popup-content p-2 sm:p-3">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">🏢</span>
-                  <h3 className="font-bold text-lg text-green-800">
+                  <span className="text-lg sm:text-xl">🏢</span>
+                  <h3 className="font-bold text-base sm:text-lg text-green-800">
                     {agencyLocation.name[currentLang]}
                   </h3>
                 </div>
-                <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                <p className="popup-description text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 leading-relaxed">
                   {agencyLocation.description[currentLang]}
                 </p>
-                <div className="flex items-center gap-2">
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <span className="inline-block px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
                     🏢 Branch Office
                   </span>
                   <span className="text-xs text-gray-500">
@@ -351,21 +351,21 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
               interactive={true}
               zIndexOffset={site.type === 'unesco' ? 100 : 50} // Lower than agencies
             >
-              <Popup maxWidth={320} className="custom-popup">
-                <div className="p-3">
+              <Popup maxWidth={280} className="custom-popup responsive-popup">
+                <div className="popup-content p-2 sm:p-3">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xl">
+                    <span className="text-lg sm:text-xl">
                       {site.type === 'unesco' ? '🏛️' : '⚱️'}
                     </span>
-                    <h3 className="font-bold text-lg text-gray-800">
+                    <h3 className="font-bold text-sm sm:text-lg text-gray-800">
                       {site.name[currentLang]}
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                  <p className="popup-description text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 leading-relaxed">
                     {site.description[currentLang]}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${site.type === 'unesco'
+                    <span className={`inline-block px-2 sm:px-3 py-1 rounded-full text-xs font-medium ${site.type === 'unesco'
                       ? 'bg-red-100 text-red-800 border border-red-200'
                       : 'bg-orange-100 text-orange-800 border border-orange-200'
                       }`}>
@@ -382,8 +382,8 @@ export function TunisiaMapClient({ tMap, locale, archaeologicalSites, agencyLoca
         <motion.button
           onClick={handleToggleReveal}
           className={`absolute top-4 right-4 z-30 flex items-center gap-2 px-4 py-2 rounded-xl shadow-lg transition-all duration-300 backdrop-blur-sm border ${isRevealed
-              ? 'bg-white/90 text-gray-700 border-gray-200 hover:bg-white hover:shadow-xl'
-              : 'bg-black/80 text-white border-white/20 hover:bg-black/90 hover:shadow-2xl'
+            ? 'bg-white/90 text-gray-700 border-gray-200 hover:bg-white hover:shadow-xl'
+            : 'bg-black/80 text-white border-white/20 hover:bg-black/90 hover:shadow-2xl'
             }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

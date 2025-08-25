@@ -47,35 +47,54 @@ export default function MapSection() {
       background: 'linear-gradient(135deg, #001F3F 0%, #003366 100%)'
     }}>
       <style jsx global>{`
-        /* Popup Responsive Styles */
+        /* Responsive Popup Base Styles */
         .leaflet-popup-content-wrapper {
           padding: 0 !important;
           border-radius: 8px !important;
           overflow: hidden;
           box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.15) !important;
+          position: relative !important;
         }
         
         .leaflet-popup-content {
           margin: 0 !important;
-          min-width: 240px;
+          font-size: 14px;
+          position: relative !important;
         }
         
         .leaflet-popup-close-button {
-          width: 28px !important;
-          height: 28px !important;
-          font-size: 18px !important;
-          padding: 3px !important;
-          color: #4B5563 !important;
-          margin: 4px !important;
-          background: rgba(255,255,255,0.9) !important;
+          width: 24px !important;
+          height: 24px !important;
+          font-size: 14px !important;
+          padding: 0 !important;
+          color: #374151 !important;
+          background: rgba(255, 255, 255, 0.95) !important;
           border-radius: 50% !important;
+          border: 1px solid rgba(0, 0, 0, 0.1) !important;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+          right: 6px !important;
+          top: 6px !important;
+          margin: 0 !important;
+          z-index: 1001 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          line-height: 1 !important;
+          text-decoration: none !important;
+          font-weight: bold !important;
+        }
+        
+        .leaflet-popup-close-button:hover {
+          background: rgba(239, 68, 68, 0.9) !important;
+          color: white !important;
+          transform: scale(1.1) !important;
         }
         
         .leaflet-popup-tip {
           box-shadow: none !important;
         }
 
-        /* Mobile Icon Labels */
+        /* Icon Labels - Mobile Responsive */
         .site-label {
           position: absolute;
           bottom: -24px;
@@ -96,77 +115,259 @@ export default function MapSection() {
           text-overflow: ellipsis;
         }
 
-        /* Mobile optimizations */
-        @media (max-width: 640px) {
+        /* Mobile Screens - Extra Small (320px - 479px) */
+        @media (max-width: 479px) {
+          .leaflet-popup-content-wrapper {
+            max-width: 200px !important;
+          }
+          
+          .leaflet-popup-content {
+            min-width: 180px !important;
+            font-size: 12px;
+          }
+
+          .popup-content {
+            padding: 8px !important;
+          }
+          
+          /* Hide descriptions on very small screens */
+          .popup-description {
+            display: none !important;
+          }
+          
+          .site-label {
+            font-size: 9px;
+            bottom: -18px;
+            padding: 2px 4px;
+            max-width: 60px;
+          }
+          
+          .leaflet-popup-close-button {
+            width: 20px !important;
+            height: 20px !important;
+            font-size: 12px !important;
+            right: 4px !important;
+            top: 4px !important;
+          }
+
+          .popup-content {
+            padding-right: 26px !important;
+            min-height: 50px !important;
+          }
+          
+          .popup-content h3 {
+            margin-right: 6px !important;
+            font-size: 14px !important;
+          }
+
+          .leaflet-control-zoom a {
+            width: 32px !important;
+            height: 32px !important;
+            line-height: 32px !important;
+            font-size: 14px !important;
+          }
+        }
+
+        /* Mobile Screens - Small (480px - 639px) */
+        @media (min-width: 480px) and (max-width: 639px) {
+          .leaflet-popup-content-wrapper {
+            max-width: 220px !important;
+          }
+          
           .leaflet-popup-content {
             min-width: 200px !important;
-            font-size: 14px;
+            font-size: 13px;
+          }
+
+          .popup-content {
+            padding: 10px !important;
+          }
+          
+          /* Show short descriptions only */
+          .popup-description {
+            display: block !important;
+            max-height: 2.6em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
           }
           
           .site-label {
             font-size: 10px;
             bottom: -20px;
-            padding: 2px 4px;
-            max-width: 80px;
+            padding: 2px 5px;
+            max-width: 75px;
           }
           
           .leaflet-popup-close-button {
-            width: 24px !important;
-            height: 24px !important;
-            font-size: 16px !important;
+            width: 22px !important;
+            height: 22px !important;
+            font-size: 13px !important;
+            right: 5px !important;
+            top: 5px !important;
           }
 
-          /* Make map controls more touch-friendly */
+          .popup-content {
+            padding-right: 30px !important;
+            min-height: 55px !important;
+          }
+          
+          .popup-content h3 {
+            margin-right: 8px !important;
+          }
+
           .leaflet-control-zoom a {
-            width: 35px !important;
-            height: 35px !important;
-            line-height: 35px !important;
-            font-size: 16px !important;
-          }
-
-          .leaflet-control-attribution {
-            font-size: 10px !important;
-            background: rgba(255, 255, 255, 0.8) !important;
+            width: 34px !important;
+            height: 34px !important;
+            line-height: 34px !important;
+            font-size: 15px !important;
           }
         }
 
-        /* Very small screens */
-        @media (max-width: 480px) {
+        /* Tablet - Small (640px - 767px) */
+        @media (min-width: 640px) and (max-width: 767px) {
+          .leaflet-popup-content-wrapper {
+            max-width: 260px !important;
+          }
+          
           .leaflet-popup-content {
-            min-width: 180px !important;
+            min-width: 240px !important;
+            font-size: 14px;
+          }
+
+          .popup-description {
+            display: block !important;
           }
           
           .site-label {
-            font-size: 9px;
-            max-width: 70px;
+            font-size: 11px;
+            bottom: -22px;
+            padding: 3px 6px;
+            max-width: 90px;
           }
         }
 
-        /* Tablet optimizations */
-        @media (min-width: 641px) and (max-width: 1024px) {
+        /* Tablet - Medium (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .leaflet-popup-content-wrapper {
+            max-width: 300px !important;
+          }
+          
           .leaflet-popup-content {
             min-width: 260px;
+            font-size: 14px;
+          }
+
+          .popup-description {
+            display: block !important;
           }
           
           .site-label {
             font-size: 12px;
-            bottom: -26px;
+            bottom: -24px;
             padding: 3px 7px;
             max-width: 110px;
           }
         }
 
-        /* Desktop */
-        @media (min-width: 1025px) {
+        /* Desktop - Small (1024px - 1279px) */
+        @media (min-width: 1024px) and (max-width: 1279px) {
+          .leaflet-popup-content-wrapper {
+            max-width: 320px !important;
+          }
+          
           .leaflet-popup-content {
             min-width: 280px;
+            font-size: 14px;
+          }
+
+          .popup-description {
+            display: block !important;
+          }
+          
+          .site-label {
+            font-size: 13px;
+            bottom: -26px;
+            padding: 4px 8px;
+            max-width: 120px;
+          }
+        }
+
+        /* Desktop - Large (1280px+) */
+        @media (min-width: 1280px) {
+          .leaflet-popup-content-wrapper {
+            max-width: 350px !important;
+          }
+          
+          .leaflet-popup-content {
+            min-width: 300px;
+            font-size: 14px;
+          }
+
+          .popup-description {
+            display: block !important;
           }
           
           .site-label {
             font-size: 14px;
             bottom: -28px;
             padding: 4px 8px;
-            max-width: 120px;
+            max-width: 130px;
+          }
+        }
+
+        /* General Mobile Touch Optimizations */
+        @media (max-width: 767px) {
+          .leaflet-control-attribution {
+            font-size: 10px !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            padding: 2px 4px !important;
+          }
+
+          /* Better touch targets for mobile */
+          .leaflet-popup-close-button {
+            touch-action: manipulation;
+          }
+
+          /* Prevent zoom on double tap for popup content */
+          .leaflet-popup-content {
+            touch-action: pan-x pan-y;
+          }
+        }
+
+        /* Popup Content Responsive Classes */
+        .popup-content {
+          padding-right: 32px !important; /* Space for close button */
+          min-height: 60px !important;
+        }
+        
+        .popup-content h3 {
+          line-height: 1.3 !important;
+          margin-bottom: 6px !important;
+          margin-right: 8px !important; /* Extra space from close button */
+          word-wrap: break-word !important;
+          overflow-wrap: break-word !important;
+        }
+
+        .popup-content .flex {
+          align-items: flex-start !important;
+          margin-right: 4px !important;
+        }
+
+        /* Badge/Tag responsiveness */
+        @media (max-width: 479px) {
+          .popup-content span[class*="inline-block"] {
+            font-size: 10px !important;
+            padding: 2px 6px !important;
+          }
+        }
+
+        @media (min-width: 480px) and (max-width: 639px) {
+          .popup-content span[class*="inline-block"] {
+            font-size: 11px !important;
+            padding: 3px 8px !important;
           }
         }
       `}</style>

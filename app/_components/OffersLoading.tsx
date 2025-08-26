@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-// Simple loading component
-export async function OffersLoading({ }: { locale: string }) {
+// Enhanced loading component matching the new card design
+export async function OffersLoading({ locale }: { locale: string }) {
     const tOffers = await getTranslations('offers');
 
     return (
@@ -24,45 +24,53 @@ export async function OffersLoading({ }: { locale: string }) {
                     </p>
                 </div>
 
-                {/* Cards skeleton */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Enhanced Cards skeleton matching new design */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto justify-items-center">
                     {[1, 2, 3].map((index) => (
                         <div
                             key={index}
-                            className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border border-gray-200"
+                            className="bg-white rounded-3xl shadow-lg overflow-hidden border border-white/20 w-full max-w-sm"
                         >
-                            {/* Image skeleton */}
-                            <div className="h-48 bg-gray-200 animate-pulse relative">
-                                <div className="absolute bottom-4 left-4">
-                                    <div className="h-8 w-32 bg-black/20 rounded-lg animate-pulse"></div>
+                            {/* Enhanced Image skeleton - matching h-56 */}
+                            <div className="relative h-56 bg-gray-200 animate-pulse rounded-t-3xl">
+                                {/* Top badges skeletons */}
+                                <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+                                    <div className="flex flex-col gap-2">
+                                        {/* Stars badge skeleton */}
+                                        <div className="h-8 w-16 bg-white/30 rounded-full animate-pulse"></div>
+                                    </div>
+                                    {/* Available badge skeleton */}
+                                    <div className="h-8 w-20 bg-white/30 rounded-full animate-pulse"></div>
                                 </div>
-                                <div className="absolute top-4 left-4">
-                                    <div className="h-7 w-16 bg-white/30 rounded-full animate-pulse"></div>
-                                </div>
-                                <div className="absolute top-4 right-4">
-                                    <div className="h-7 w-20 bg-white/30 rounded-full animate-pulse"></div>
+
+                                {/* Title overlay skeleton */}
+                                <div className="absolute bottom-4 left-4 right-4">
+                                    <div className="h-6 w-40 bg-black/20 rounded mb-2 animate-pulse"></div>
+                                    <div className="h-4 w-32 bg-black/15 rounded animate-pulse"></div>
                                 </div>
                             </div>
 
-                            {/* Content skeleton */}
-                            <div className="p-6 bg-white">
-                                <div className="h-8 bg-gray-200 rounded mb-3 animate-pulse"></div>
-                                <div className="space-y-2 mb-4">
+                            {/* Enhanced Content skeleton */}
+                            <div className="p-6">
+                                {/* Description skeleton */}
+                                <div className="mb-6 space-y-2">
                                     <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
                                     <div className="h-4 bg-gray-200 rounded w-4/5 animate-pulse"></div>
                                     <div className="h-4 bg-gray-200 rounded w-3/5 animate-pulse"></div>
                                 </div>
 
-                                {/* Badges skeleton */}
-                                <div className="flex gap-3 mb-4">
-                                    <div className="h-8 w-24 bg-blue-100 rounded-full animate-pulse"></div>
+                                {/* Enhanced Buttons skeleton */}
+                                <div className="space-y-3">
+                                    {/* Primary button skeleton */}
+                                    <div className="h-12 bg-gray-200 rounded-xl animate-pulse"></div>
+                                    {/* Secondary button skeleton */}
+                                    <div className="h-12 bg-gray-100 border-2 border-gray-200 rounded-xl animate-pulse"></div>
                                 </div>
+                            </div>
 
-                                {/* Buttons skeleton */}
-                                <div className="flex flex-col gap-3">
-                                    <div className="h-10 bg-gray-200 rounded-full animate-pulse"></div>
-                                    <div className="h-10 bg-gray-200 rounded-full animate-pulse"></div>
-                                </div>
+                            {/* Corner accent skeleton */}
+                            <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden">
+                                <div className="absolute top-4 right-4 w-6 h-6 transform rotate-45 bg-gray-100 animate-pulse"></div>
                             </div>
                         </div>
                     ))}

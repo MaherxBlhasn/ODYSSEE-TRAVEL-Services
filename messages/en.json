@@ -156,10 +156,10 @@
       "phone": "Phone",
       "message": "Message",
       "messagePlaceholder": "Tell us about your dream destination...",
-      "sendMessage": "Send Message",
       "sending": "Sending...",
       "sent": "Message Sent!",
-      "error": "Error - Try Again"
+      "error": "Try Again",
+      "sendMessage": "Send Message"
     },
     "info": {
       "title": "Contact Information",

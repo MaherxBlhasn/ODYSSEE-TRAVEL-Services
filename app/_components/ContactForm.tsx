@@ -38,7 +38,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -53,13 +52,13 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
         // Default behavior: submit to your backend API
         console.log('Submitting to API:', formData);
         const url = buildApiUrl('/contacts');
-        
+
         // Prepare data with timestamp and email routing for backend
         const backendData = {
           ...formData,
           messageSentAt: new Date().toISOString(),
         };
-        
+
         console.log('Backend data:', backendData);
         const response = await fetch(url, {
           method: 'POST',
@@ -70,19 +69,19 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
         });
 
         console.log('API response:', await response.json());
-        
+
         if (!response.ok) {
           throw new Error(`API request failed: ${response.status}`);
         }
-        
+
         console.log('API response:', response);
       }
 
       setSubmitStatus('success');
-      
+
       // Track successful form submission
       trackEvent('form_submit_success', 'contact', 'contact_form');
-      
+
       // Reset form after successful submission
       setTimeout(() => {
         setFormData({
@@ -93,36 +92,69 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
           message: ''
         });
         setSubmitStatus('idle');
-      }, 2000);
-      
+      }, 3000); // Increased timeout to match newsletter form behavior
+
     } catch (error) {
       setSubmitStatus('error');
-      
+
       // Track form submission error
       trackEvent('form_submit_error', 'contact', 'contact_form');
       console.error('Form submission error:', error);
+
+      // Reset error status after some time
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 3000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const getButtonText = () => {
-    if (isSubmitting) return tContact('form.sending') || 'Sending...';
-    if (submitStatus === 'success') return tContact('form.sent') || 'Message Sent!';
-    if (submitStatus === 'error') return tContact('form.error') || 'Error - Try Again';
-    return tContact('form.sendMessage');
+  const getButtonStyles = () => {
+    let baseStyles = "w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange/50 focus:ring-offset-2 focus:ring-offset-transparent disabled:cursor-not-allowed transform";
+
+    switch (submitStatus) {
+      case 'success':
+        return `${baseStyles} bg-green-500 text-white scale-105 shadow-lg shadow-green-500/25`;
+      case 'error':
+        return `${baseStyles} bg-red-500 text-white scale-95`;
+      default:
+        if (isSubmitting) {
+          return `${baseStyles} bg-orange/70 text-white cursor-wait scale-95`;
+        }
+        return `${baseStyles} bg-orange text-white hover:bg-orange/90 hover:scale-105 active:scale-95 shadow-lg shadow-orange/25`;
+    }
   };
 
-  const getButtonClass = () => {
-    let baseClass = "w-full py-4 rounded-2xl font-semibold text-lg transition-all duration-300";
-    
+  const getButtonContent = () => {
+    if (isSubmitting) {
+      return (
+        <div className="flex items-center justify-center space-x-2">
+          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          <span>{tContact('form.sending') || 'Sending...'}</span>
+        </div>
+      );
+    }
+
     if (submitStatus === 'success') {
-      return `${baseClass} bg-green-500 text-white`;
+      return (
+        <div className="flex items-center justify-center space-x-2">
+          <span className="text-xl">✓</span>
+          <span>{tContact('form.sent') || 'Message Sent!'}</span>
+        </div>
+      );
     }
+
     if (submitStatus === 'error') {
-      return `${baseClass} bg-red-500 text-white`;
+      return (
+        <div className="flex items-center justify-center space-x-2">
+          <span className="text-xl">⚠</span>
+          <span>{tContact('form.error') || 'Try Again'}</span>
+        </div>
+      );
     }
-    return `${baseClass} text-white` + ' hover:opacity-80';
+
+    return tContact('form.sendMessage');
   };
 
   return (
@@ -130,12 +162,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
       <div className="grid md:grid-cols-2 gap-8">
         <div>
           <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.firstName')}</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+            className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none"
             style={{
               backgroundColor: 'rgba(252, 230, 206, 0.1)',
               borderColor: 'rgba(242, 140, 40, 0.3)',
@@ -157,12 +189,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
         </div>
         <div>
           <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.lastName')}</label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             name="familyName"
             value={formData.familyName}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+            className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none"
             style={{
               backgroundColor: 'rgba(252, 230, 206, 0.1)',
               borderColor: 'rgba(242, 140, 40, 0.3)',
@@ -183,15 +215,15 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
           />
         </div>
       </div>
-      
+
       <div>
         <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.email')}</label>
-        <input 
-          type="email" 
+        <input
+          type="email"
           name="Email"
           value={formData.Email}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+          className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none"
           style={{
             backgroundColor: 'rgba(252, 230, 206, 0.1)',
             borderColor: 'rgba(242, 140, 40, 0.3)',
@@ -214,12 +246,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
 
       <div>
         <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.phone')}</label>
-        <input 
-          type="tel" 
+        <input
+          type="tel"
           name="phone"
           value={formData.phone}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none" 
+          className="w-full px-4 py-3 rounded-2xl border transition-all duration-300 focus:outline-none"
           style={{
             backgroundColor: 'rgba(252, 230, 206, 0.1)',
             borderColor: 'rgba(242, 140, 40, 0.3)',
@@ -241,12 +273,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
 
       <div>
         <label className="block mb-3" style={{ color: '#FCE6CE' }}>{tContact('form.message')}</label>
-        <textarea 
-          rows={5} 
+        <textarea
+          rows={5}
           name="message"
           value={formData.message}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 rounded-2xl border resize-none transition-all duration-300 focus:outline-none" 
+          className="w-full px-4 py-3 rounded-2xl border resize-none transition-all duration-300 focus:outline-none"
           style={{
             backgroundColor: 'rgba(252, 230, 206, 0.1)',
             borderColor: 'rgba(242, 140, 40, 0.3)',
@@ -267,13 +299,17 @@ export default function ContactForm({ onSubmit }: ContactFormProps = {}) {
         />
       </div>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         disabled={isSubmitting}
-        className={getButtonClass()}
-        style={{ backgroundColor: '#F28C28' }}
+        className={getButtonStyles()}
+        style={{
+          backgroundColor: submitStatus === 'success' ? '#10B981' :
+            submitStatus === 'error' ? '#EF4444' :
+              isSubmitting ? 'rgba(242, 140, 40, 0.7)' : '#F28C28'
+        }}
       >
-        {getButtonText()}
+        {getButtonContent()}
       </button>
     </form>
   );

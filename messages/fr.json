@@ -157,13 +157,19 @@
       "phone": "Téléphone",
       "message": "Message",
       "messagePlaceholder": "Parlez-nous de votre destination de rêve...",
-      "sendMessage": "Envoyer le Message"
+      "sending": "Envoi en cours...",
+      "sent": "Message envoyé !",
+      "error": "Réessayer",
+      "sendMessage": "Envoyer le message"
     },
     "info": {
       "title": "Informations de Contact",
       "address": {
         "title": "Adresse",
-        "value": ["Immeuble Mlika, Bd Ennakhil Khezema Est 4051, Sousse (siége)", "11 Avenue de la démocratie, Ariana, Tunisia, 1004"]
+        "value": [
+          "Immeuble Mlika, Bd Ennakhil Khezema Est 4051, Sousse (siége)",
+          "11 Avenue de la démocratie, Ariana, Tunisia, 1004"
+        ]
       },
       "phone": {
         "title": "Téléphone",

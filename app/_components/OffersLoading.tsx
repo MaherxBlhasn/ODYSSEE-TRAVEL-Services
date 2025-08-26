@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 // Enhanced loading component matching the new card design
 export async function OffersLoading({ locale }: { locale: string }) {
     const tOffers = await getTranslations('offers');
+    const tCommon = await getTranslations('common');
 
     return (
         <section id="offers" className="py-20 px-6 relative" style={{
@@ -57,7 +58,7 @@ export async function OffersLoading({ locale }: { locale: string }) {
                                 textShadow: '0 1px 2px rgba(0,0,0,0.1)'
                             }}
                         >
-                            Loading offers...
+                            {tCommon('loadingOffers')}
                         </p>
                     </div>
                 </div>

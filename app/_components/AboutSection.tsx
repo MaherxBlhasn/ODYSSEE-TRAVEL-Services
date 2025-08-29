@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import AnimatedCounter from './AnimatedCounter';
 
 export default async function AboutSection() {
   const tAbout = await getTranslations('about');
@@ -38,16 +39,16 @@ export default async function AboutSection() {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <div className="text-center">
-            <div className="text-5xl font-bold mb-2" style={{ color: '#F28C28' }}>150+</div>
-            <div className="text-xl" style={{color: '#001F3F', fontWeight: 600}}>{tAbout('stats.destinations')}</div>
+            <AnimatedCounter end={150} suffix="+" duration={2500} />
+            <div className="text-xl" style={{ color: '#001F3F', fontWeight: 600 }}>{tAbout('stats.destinations')}</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold mb-2" style={{ color: '#F28C28' }}>10,000+</div>
-            <div className="text-xl" style={{color: '#001F3F', fontWeight: 600}}>{tAbout('stats.travelers')}</div>
+            <AnimatedCounter end={10000} suffix="+" duration={3000} />
+            <div className="text-xl" style={{ color: '#001F3F', fontWeight: 600 }}>{tAbout('stats.travelers')}</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold mb-2" style={{ color: '#F28C28' }}>{yearsExperience}+</div>
-            <div className="text-xl" style={{color: '#001F3F', fontWeight: 600}}>{tAbout('stats.experience')}</div>
+            <AnimatedCounter end={yearsExperience} suffix="+" duration={2000} />
+            <div className="text-xl" style={{ color: '#001F3F', fontWeight: 600 }}>{tAbout('stats.experience')}</div>
           </div>
         </div>
 

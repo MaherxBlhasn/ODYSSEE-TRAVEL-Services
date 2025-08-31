@@ -7,6 +7,11 @@ export function useI18n() {
   const t = useTranslations();
   
   const getLocalizedPath = (path: string) => {
+
+    // Skip assets in root
+    if (path.startsWith('/favicon') || path.startsWith('/site.webmanifest') || path.startsWith('/images')) {
+      return path;
+    }
     // Remove leading slash if present
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     return `/${locale}${cleanPath ? `/${cleanPath}` : ''}`;

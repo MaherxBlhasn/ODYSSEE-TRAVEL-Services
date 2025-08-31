@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "Odyssee Travel Services",
     images: [
       {
-        url: "/odyssee-banner.png", // ton image dans /public
+        url: "/banner.png", // ton image dans /public
         width: 1200,
         height: 630,
         alt: "Odyssee Travel Services Banner",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Odyssee Travel Services",
     description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
-    images: ["/odyssee-banner.png"],
+    images: ["/banner.png"],
   },
   icons: {
     icon: [
@@ -81,8 +81,9 @@ export default async function LocaleLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Unforgettable Journeys • Unique Experiences" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></link>
-      </head>     
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-beige overflow-x-hidden`}
         style={{
@@ -91,7 +92,7 @@ export default async function LocaleLayout({
         }}
       >
         <GoogleAnalytics />
-        
+
         <ClientLayout messages={messages} locale={locale}>
           {children}
         </ClientLayout>

@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     other: [
       {
         rel: "manifest",
-        url: "/site.webmanifest",
+        url: "https://odyssetravelservices.com/site.webmanifest",
       },
     ],
   },

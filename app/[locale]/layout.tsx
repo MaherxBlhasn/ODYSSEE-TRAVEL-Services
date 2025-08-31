@@ -18,10 +18,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Odyssee Travel Services",
+  title: "Odyssee Travel Services - Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
   description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
   openGraph: {
-    title: "Odyssee Travel Services",
+    title: "Odyssee Travel Services - Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
     description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
     url: "https://odyssetravelservices.com", // ← Mets ton vrai domaine
     siteName: "Odyssee Travel Services",

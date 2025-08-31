@@ -18,16 +18,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://odyssee-travel.com"), // ← Mets ton vrai domaine ici
   title: "Odyssee Travel Services",
-  description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
+  description: "Unforgettable Journeys • Unique Experiences",
   openGraph: {
     title: "Odyssee Travel Services",
-    description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
-    url: "https://odyssetravelservices.com", // ← Mets ton vrai domaine
-    siteName: "Odyssee Travel Services",
+    description: "Unforgettable Journeys • Unique Experiences",
+    url: "https://odyssee-travel.com",
+    siteName: "Odyssee Travel",
     images: [
       {
-        url: "/odyssee-banner.png", // ton image dans /public
+        url: "/odyssee-banner.png", // sera résolu en https://odyssee-travel.com/odyssee-banner.png
         width: 1200,
         height: 630,
         alt: "Odyssee Travel Services Banner",
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Odyssee Travel Services",
-    description: "Creating unforgettable journeys and extraordinary experiences for travelers worldwide.",
+    description: "Unforgettable Journeys • Unique Experiences",
     images: ["/odyssee-banner.png"],
   },
   icons: {

@@ -17,7 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Make sure this matches your actual domain
 const SITE_URL = "https://odysseetravelservices.com";
 
 export const metadata: Metadata = {
@@ -74,7 +73,7 @@ export const metadata: Metadata = {
     title: "Odyssee Travel Services - Your Trusted Partner in Travel",
     description: "With over 26 years of experience in the travel industry, Odyssee Travel is a travel agency founded in 1998. Creating unforgettable journeys and extraordinary experiences.",
     images: ["/bannerv2.png"],
-    creator: "@odysseetravel", // Add your Twitter handle if you have one
+    creator: "@odysseetravel",
   },
   icons: {
     icon: [
@@ -98,9 +97,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification
-    // yandex: 'your-yandex-verification-code',
-    // bing: 'your-bing-verification-code',
+    google: 'your-google-verification-code',
   },
 };
 
@@ -115,13 +112,11 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
 
-  // Providing all messages to the client side
   const messages = await getMessages();
 
-  // Structured Data for Local Business
+  // Enhanced Structured Data for better rich results
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
@@ -132,25 +127,50 @@ export default async function LocaleLayout({
     "foundingDate": "1998",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Ennakhil", // Add more specific address details
-      // "addressLocality": "City",
-      // "addressRegion": "State/Region",
-      // "postalCode": "PostalCode",
-      // "addressCountry": "Country"
+      "streetAddress": "Ennakhil",
     },
-    "sameAs": [
-      // Add your social media profiles
-      // "https://facebook.com/odysseetravelservices",
-      // "https://instagram.com/odysseetravelservices",
-      // "https://linkedin.com/company/odysseetravelservices"
-    ],
     "serviceType": [
       "Travel Planning",
       "Vacation Packages",
       "Tour Services",
       "Travel Booking"
     ],
-    "areaServed": "Worldwide"
+    "areaServed": "Worldwide",
+    // Adding offers for rich results
+    "makesOffer": [{
+      "@type": "Offer",
+      "name": "Flight Booking",
+      "description": "Book flights to worldwide destinations"
+    }, {
+      "@type": "Offer",
+      "name": "Hotel Reservations",
+      "description": "Find the best hotels in Tunisia and worldwide"
+    }, {
+      "@type": "Offer",
+      "name": "Tailor-made Journeys",
+      "description": "Custom travel experiences designed for you"
+    }]
+  };
+
+  // Additional FAQ structured data for better visibility
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "What services does Odyssee Travel Services offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer a wide range of services including flights, accommodations, and tailor-made journeys, whether in Tunisia or across the globe."
+      }
+    }, {
+      "@type": "Question",
+      "name": "How long has Odyssee Travel Services been in business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We have over 26 years of experience in the travel industry, having been founded in 1998."
+      }
+    }]
   };
 
   return (
@@ -158,7 +178,7 @@ export default async function LocaleLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#your-brand-color" />
+        <meta name="theme-color" content="#0056b3" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
         {/* Structured Data */}
@@ -167,6 +187,15 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
+          }}
+        />
+
+        {/* FAQ Structured Data */}
+        <Script
+          id="faq-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqStructuredData),
           }}
         />
 

@@ -2,7 +2,6 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from 'next/script';
 import '../globals.css';
 import ClientLayout from '../_components/ClientLayout';
 import GoogleAnalytics from '../_components/GoogleAnalytics';
@@ -128,6 +127,12 @@ export default async function LocaleLayout({
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Ennakhil",
+      "addressCountry": "TN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "areaServed": "Worldwide"
     },
     "serviceType": [
       "Travel Planning",
@@ -136,41 +141,56 @@ export default async function LocaleLayout({
       "Travel Booking"
     ],
     "areaServed": "Worldwide",
-    // Adding offers for rich results
-    "makesOffer": [{
-      "@type": "Offer",
-      "name": "Flight Booking",
-      "description": "Book flights to worldwide destinations"
-    }, {
-      "@type": "Offer",
-      "name": "Hotel Reservations",
-      "description": "Find the best hotels in Tunisia and worldwide"
-    }, {
-      "@type": "Offer",
-      "name": "Tailor-made Journeys",
-      "description": "Custom travel experiences designed for you"
-    }]
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Flight Booking",
+          "description": "Book flights to worldwide destinations"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Hotel Reservations",
+          "description": "Find the best hotels in Tunisia and worldwide"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Tailor-made Journeys",
+          "description": "Custom travel experiences designed for you"
+        }
+      }
+    ]
   };
 
-  // Additional FAQ structured data for better visibility
+  // FAQ structured data for better visibility
   const faqStructuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [{
-      "@type": "Question",
-      "name": "What services does Odyssee Travel Services offer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We offer a wide range of services including flights, accommodations, and tailor-made journeys, whether in Tunisia or across the globe."
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Odyssee Travel Services offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer a wide range of services including flights, accommodations, and tailor-made journeys, whether in Tunisia or across the globe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long has Odyssee Travel Services been in business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We have over 26 years of experience in the travel industry, having been founded in 1998."
+        }
       }
-    }, {
-      "@type": "Question",
-      "name": "How long has Odyssee Travel Services been in business?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We have over 26 years of experience in the travel industry, having been founded in 1998."
-      }
-    }]
+    ]
   };
 
   return (
@@ -181,9 +201,12 @@ export default async function LocaleLayout({
         <meta name="theme-color" content="#0056b3" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
         {/* Structured Data */}
-        <Script
-          id="structured-data"
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
@@ -191,17 +214,12 @@ export default async function LocaleLayout({
         />
 
         {/* FAQ Structured Data */}
-        <Script
-          id="faq-structured-data"
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(faqStructuredData),
           }}
         />
-
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-beige overflow-x-hidden`}

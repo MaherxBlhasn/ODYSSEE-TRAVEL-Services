@@ -1,20 +1,30 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import type { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-    async redirects() {
-        return [];
-    },
+const nextConfig: NextConfig = {
+    // Rewrite /sitemap without locale prefix
     async rewrites() {
         return [
             {
-                source: '/sitemap',
+                source: '/sitemap',       // the URL requested
+                destination: '/sitemap',  // handled by route.ts
+                locale: false,            // disable automatic locale prefix
+            },
+        ];
+    },
+
+    // Optional: redirect /sitemap.xml → /sitemap
+    async redirects() {
+        return [
+            {
+                source: '/sitemap.xml',
                 destination: '/sitemap',
-                locale: false, // <- important: prevent locale prefix
+                permanent: true,
             },
         ];
     },
 };
-export default nextConfig;
+
+export default withNextIntl(nextConfig);
